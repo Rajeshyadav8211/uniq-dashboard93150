@@ -1,0 +1,1272 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Master Admin Panel</title>
+  <link rel="stylesheet" href="https://commediait.com/masteradmin/assets/admin/bootstrap5/font-awesome/font-awesome.min.css">
+  <link rel="stylesheet" href="https://commediait.com/masteradmin/assets/bootstrap5/bootstrap-css/bootstrap.min.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://commediait.com/masteradmin/assets/css/main.css">
+  <link rel="stylesheet" href="https://commediait.com/masteradmin/assets/responsive-css/responsive.css">
+  
+  
+  <link rel="stylesheet" href="https://commediait.com/masteradmin/assets/css/table.css?=17">
+  <link rel="stylesheet" href="css/input-form.css">
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- -------datepicker----- -->
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
+
+  <style>
+  table.dataTable thead th, table.dataTable thead td {
+    padding: 10px 10px;
+    border-bottom: 1px solid #111;
+}
+  table.dataTable thead th:first-child {
+    background-image: none !important;
+}
+ /* Reduce the size of the checkbox column */
+        .checkbox-column {
+                width: 30px!important;
+                min-width: 5px;
+                max-width: 5px;
+            }
+        
+  input[type="checkbox"] {
+            /*transform: scale(1.3);*/
+            cursor: pointer;
+        }
+  
+    .table-dropdown {
+      margin-bottom: 10px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .table-dropdown-btn {
+      background-color: #2f4052;
+      color: white;
+      padding: 5px 8px;
+      font-size: 12px;
+      border: none;
+      border-radius: 3px;
+    }
+
+    .table-dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background-color: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      min-width: 200px;
+      z-index: 1;
+    }
+
+    .table-dropdown-content button {
+      background: none;
+      color: #2f4052;
+      border: none;
+      width: 100%;
+      padding: 12px;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .table-dropdown-content button:hover {
+      background-color: #f4f4f4;
+    }
+    .table-tools {
+    padding: 4px 0px 0px 20px;
+    width: 50vh;
+    display: flex;
+    justify-content: space-between
+}
+.table-tools span {
+    white-space: nowrap;
+    font-size: 12px;
+    cursor:pointer;
+}
+.table-tools p {
+    white-space: nowrap;
+}
+  </style>
+</head>
+
+
+<body onload="onLoad()">
+  <div id="wrapper">
+<aside class="sidebar-bg" id="sidebar-wrapper">
+      <div class="sidebar-logo logo">
+        <h2><i class="fa fa-empire" aria-hidden="true"></i> LOGO</h2>
+      </div>
+      <ul class="sidebar-nav menu">
+        <li class="active">
+          <a href="panel.html"><i class="fa fa-home"></i>Dashboards</a>
+        </li>
+        <li>
+          <a href="https://commediait.com/masteradmin/admin/users/index"><i class="fa fa-table"></i>Data Table</a>
+        </li>
+        <li>
+          <a href="#"><i class="fa fa-calendar"></i>Calendar</a>
+        </li>
+        <li class="list-group-item dropdown sidebar-dropdown accordion-sub-icon accordion">
+          <a href="#"><i class="fa fa-suitcase"></i> Portfolio
+            <span class="accordion-sub-icon-menu"><i class="fa fa-angle-right text-light submenu-icon"></i></span>
+          </a>
+
+          <ul class="sub-sidebar-nav list-group submenu submenu-list" style="display: none;">
+            <li class="list-group-item"><a href="#" class="text-decoration-none"><i class="fa fa-superpowers"></i>
+                Web Projects</a></li>
+            <li class="list-group-item dropdown accordion-sub-icon">
+              <a href="#" class="text-decoration-none"><i class="fa fa-print"></i> Design Projects
+                <span class="accordion-sub-icon-menu"><i class="fa fa-angle-right text-light submenu-icon"></i></span>
+              </a>
+              <ul class="sub-sidebar-nav sub-sidebar-nav-menu list-group submenu" style="display: none;">
+                <li class="list-group-item"><a href="#" class="text-decoration-none"><i class="fa fa-flash"></i> Logos</a></li>
+                <li class="list-group-item"><a href="#" class="text-decoration-none"><i class="fa fa-medkit"></i> UI Kits</a></li>
+              </ul>
+            </li>
+            <li class="list-group-item"><a href="#" class="text-decoration-none"><i class="fa fa-support"></i>
+                Programming</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="#"><i class="fa fa-laptop"></i>Data Grid</a>
+        </li>
+
+
+        <li class="list-group-item dropdown accordion-sub-icon">
+          <a href="#" class="text-decoration-none"><i class="fa fa-cog"></i>Services
+            <span class="accordion-sub-icon-menu"><i class="fa fa-angle-right text-light submenu-icon"></i></span>
+          </a>
+
+          <ul class="sub-sidebar-nav list-group submenu submenu-list" style="display: none;">
+            <li class="list-group-item"><a href="#" class="text-decoration-none"><i class="fa fa-weibo"></i>Web Design</a></li>
+            <li class="list-group-item"><a href="#" class="text-decoration-none"><i class="fa fa-ioxhost"></i>Hosting</a></li>
+            <li class="list-group-item dropdown accordion-sub-icon">
+              <a href="#" class="text-decoration-none"><i class="fa fa-universal-access"></i>Design
+                <span class="accordion-sub-icon-menu"><i class="fa fa-angle-right text-light submenu-icon"></i></span>
+              </a>
+
+              <ul class="sub-sidebar-nav sub-sidebar-nav-menu list-group submenu" style="display: none;">
+                <li class="list-group-item"><a href="#" class="text-decoration-none"><i class="fa fa-gratipay"></i>Graphics</a></li>
+                <li class="list-group-item"><a href="#" class="text-decoration-none"><i class="fa fa-photo"></i>Photoshop</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="#"><i class="fa fa-diamond"></i>UI Element</a>
+        </li>
+
+        <li class="list-group-item dropdown accordion-sub-icon">
+          <a href="#" class="text-decoration-none"><i class="fa fa-cog"></i>Components
+            <span class="accordion-sub-icon-menu"><i class="fa fa-angle-right text-light submenu-icon"></i></span>
+          </a>
+
+          <ul class="sub-sidebar-nav list-group submenu submenu-list" style="display: none;">
+            <li class="list-group-item"><a href="#" class="text-decoration-none"><i class="fa fa-weibo"></i>Web Design</a></li>
+            <li class="list-group-item"><a href="#" class="text-decoration-none"><i class="fa fa-ioxhost"></i>Hosting</a></li>
+            <li class="list-group-item dropdown accordion-sub-icon">
+              <a href="#" class="text-decoration-none"><i class="fa fa-universal-access"></i>Design
+                <span class="accordion-sub-icon-menu"><i class="fa fa-angle-right text-light submenu-icon"></i></span>
+              </a>
+
+              <ul class="sub-sidebar-nav sub-sidebar-nav-menu list-group submenu" style="display: none;">
+                <li class="list-group-item"><a href="#" class="text-decoration-none"><i class="fa fa-gratipay"></i>Graphics</a></li>
+                <li class="list-group-item"><a href="#" class="text-decoration-none"><i class="fa fa-photo"></i>Photoshop</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+        <li class="list-group-item dropdown accordion-sub-icon">
+          <a href="#" class="text-decoration-none"><i class="fa fa-sitemap"></i>Menu Levels
+            <span class="accordion-sub-icon-menu"><i class="fa fa-angle-right text-light submenu-icon"></i></span>
+          </a>
+
+          <ul class="sub-sidebar-nav list-group submenu submenu-list" style="display: none;">
+            <li class="list-group-item"><a href="#" class="text-decoration-none"><i class="fa fa-weibo"></i>Web Design</a></li>
+            <li class="list-group-item"><a href="#" class="text-decoration-none"><i class="fa fa-ioxhost"></i>Hosting</a></li>
+            <li class="list-group-item dropdown accordion-sub-icon">
+              <a href="#" class="text-decoration-none"><i class="fa fa-universal-access"></i>Design
+                <span class="accordion-sub-icon-menu"><i class="fa fa-angle-right text-light submenu-icon"></i></span>
+              </a>
+
+              <ul class="sub-sidebar-nav sub-sidebar-nav-menu list-group submenu" style="display: none;">
+                <li class="list-group-item"><a href="#" class="text-decoration-none"><i class="fa fa-gratipay"></i>Graphics</a></li>
+                <li class="list-group-item"><a href="#" class="text-decoration-none"><i class="fa fa-photo"></i>Photoshop</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="form.html"><i class="fa fa-edit"></i>Input Form</a>
+        </li>
+        <li>
+          <a href="#"><i class="fa fa-sitemap"></i>Menu Level</a>
+        </li>
+        <li>
+          <a href="#"><i class="fa fa-mail-forward"></i>Mail Boxes</a>
+        </li>
+        <li class="active">
+          <a href="#"><i class="fa fa-sign-out"></i>Log Out</a>
+        </li>
+        <hr>
+      </ul>
+
+    </aside>
+<div class="header-bg" id="navbar-wrapper">
+      <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a href="#" class="navbar-brand" id="sidebar-toggle"><i class="fa fa-bars"></i></a>
+          </div>
+
+          <div class="dashboard-header">
+            <div class="search-box">
+              <input type="text" placeholder="Search...">
+              <i class="fa fa-search icon"></i>
+            </div>
+            <div class="dropdown show">
+              <a href="#" role="button" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa fa-envelope" aria-hidden="true" style="font-size: 19px; color: #999c9e;"></i>
+                <span class="label text-light drop-label">3</span>
+              </a>
+
+              <!-- Dropdown menu aligned to the left -->
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="left: auto;
+              top: 118%;
+              right: -38%;">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </div>
+            <div class="dropdown show">
+              <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa fa-bell-o" aria-hidden="true" style="font-size: 19px; color: #999c9e;"></i>
+                <span class="label text-light drop-label">5</span>
+              </a>
+
+              <!-- Dropdown menu aligned to the left -->
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="left: auto;
+              top: 118%;
+              right: -38%;">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </div>
+            <div class="dropdown show">
+                
+              <a href="#" class="image-profile" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://commediait.com/masteradmin/assets/images/profile.jpg" alt="Profile" class="p-1" style="width: 21px; border: 2px solid #2f4052; border-color: #1d3449!important; border-radius: 15% !important;">
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="left: auto;
+              top: 118%;
+              right: -38%;">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </nav>
+    </div>     
+
+ <!-- Custom CSS -->
+    <style>
+        /*#productTable th:first-child::after {*/
+        /*    display: none !important;*/
+        /*}*/
+        /*#productTable th:first-child::before {*/
+        /*    display: none !important;*/
+        /*}*/
+
+        .date-picker-container {
+            /*background-color: white;*/
+            padding: 4px 0px;
+            /* box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); */
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            /* flex-wrap: wrap; */
+            width: 100%;
+            max-width: 600px;
+        }
+
+       .clc-calender label {
+           font-size: 12px;
+            font-weight: 500;
+        }
+
+       .clc-calender input {
+            padding: 7px;
+            font-size: 11px;
+            /*border: 1px solid #ccc;*/
+            border-radius: 3px;
+            width: 100%;
+            max-width: 250px;
+            box-sizing: border-box;
+        }
+
+        @media (max-width: 600px) {
+            .date-picker-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+           .clc-calender input {
+                width: 100%;
+            }
+        }
+    </style>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="row">
+            <div class="col-6">
+              <div class="form-floating">
+                <input type="text" id="name" required="">
+                <label for="name" class="">Full Name</label>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-floating">
+                <input type="email" id="email" required="">
+                <label for="email" class="">Email Address</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="gender-box">
+                <div class="gnrl-bx-genral">
+                  <label for="gender">Gender</label>
+                </div>
+                <div class="form-check form-check-inline gnrl-bx">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                    value="option1">
+                  <label class="form-check-label" for="inlineRadio1">Male</label>
+                </div>
+                <div class="form-check form-check-inline gnrl-bx">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                    value="option2">
+                  <label class="form-check-label" for="inlineRadio2">Female</label>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-date">
+                <label for="date" class="">Date</label>
+                <input type="date" id="date" required="">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="form-floating">
+                <input type="text" id="address" required="">
+                <label for="address" class="">Address</label>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-date">
+                <label for="select" class="">Country</label>
+                <select type="select" class="form-select" id="select" required="">
+                  <option selected>India</option>
+                  <option>China</option>
+                  <option>America</option>
+                  <option>Canada</option>
+                  <option>Nepal</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="form-floating">
+                <input type="text" id="city" required="">
+                <label for="city" class="">City</label>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-floating">
+                <input type="text" id="state" required="">
+                <label for="state" class="">State</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="gender-box">
+                <div class="gnrl-bx-genral">
+                  <label for="gender">Language</label>
+                </div>
+                <div class="form-check form-check-inline gnrl-bx">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                  <label class="form-check-label" for="inlineCheckbox1">Hindi</label>
+                </div>
+                <div class="form-check form-check-inline gnrl-bx">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                  <label class="form-check-label" for="inlineCheckbox2">English</label>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-floating">
+                <input type="file" id="state" required="">
+                <!-- <label for="state" class="">File</label> -->
+              </div>
+            </div>
+          </div>
+
+          <div class="form-btn text-end">
+            <button type="submit">Submit</button>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Update Modal -->
+<div class="modal fade" id="exampleModalupdate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="row">
+            <div class="col-6">
+              <div class="form-floating">
+                <input type="text" id="name" required="">
+                <label for="name" class="">Full Name</label>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-floating">
+                <input type="email" id="email" required="">
+                <label for="email" class="">Email Address</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="gender-box">
+                <div class="gnrl-bx-genral">
+                  <label for="gender">Gender</label>
+                </div>
+                <div class="form-check form-check-inline gnrl-bx">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                    value="option1">
+                  <label class="form-check-label" for="inlineRadio1">Male</label>
+                </div>
+                <div class="form-check form-check-inline gnrl-bx">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                    value="option2">
+                  <label class="form-check-label" for="inlineRadio2">Female</label>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-date">
+                <label for="date" class="">Date</label>
+                <input type="date" id="date" required="">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="form-floating">
+                <input type="text" id="address" required="">
+                <label for="address" class="">Address</label>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-date">
+                <label for="select" class="">Country</label>
+                <select type="select" class="form-select" id="select" required="">
+                  <option selected>India</option>
+                  <option>China</option>
+                  <option>America</option>
+                  <option>Canada</option>
+                  <option>Nepal</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="form-floating">
+                <input type="text" id="city" required="">
+                <label for="city" class="">City</label>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-floating">
+                <input type="text" id="state" required="">
+                <label for="state" class="">State</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="gender-box">
+                <div class="gnrl-bx-genral">
+                  <label for="gender">Language</label>
+                </div>
+                <div class="form-check form-check-inline gnrl-bx">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                  <label class="form-check-label" for="inlineCheckbox1">Hindi</label>
+                </div>
+                <div class="form-check form-check-inline gnrl-bx">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                  <label class="form-check-label" for="inlineCheckbox2">English</label>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-floating">
+                <input type="file" id="state" required="">
+                <!-- <label for="state" class="">File</label> -->
+              </div>
+            </div>
+          </div>
+
+          <div class="form-btn text-end">
+            <button type="submit">Submit</button>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Modal -->
+<div class="modal fade" id="exampleModaldelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content p-3">
+      <div class="modal-body delete-box">
+        <span>Are you sure to delete this item ?</span>
+        <div class="delete-btn">
+          <button data-bs-dismiss="modal">Cancel</button>
+          <button>Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Action Modal -->
+<div class="modal fade" id="exampleModalAction" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="">
+          <div class="row">
+            <div class="col-6">
+              <div class="form-floating">
+                <input type="text" id="userName" required>
+                <label for="userName">Full Name</label>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-floating">
+                <input type="text" id="userEmail" required>
+                <label for="userEmail">Position</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="form-floating">
+                <input type="text" id="office" required>
+                <label for="office">Office</label>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-floating">
+                <input type="text" id="age" required>
+                <label for="age">Age</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="form-floating">
+                <input type="text" id="location" required>
+                <label for="location">Location</label>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-floating">
+                <input type="text" id="age" required>
+                <label for="age">salary</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-btn text-end">
+            <button type="submit" onclick="saveUser()">Submit</button>
+          </div>
+
+        </form>
+
+      </div>
+      <!-- <div class="modal-footer">
+          <button class="add-btn" onclick="saveUser()">Save</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+<section id="content-wrapper">
+      <div class="container dashboard-content mt-4">
+        <!-- -----------right--side-list-box-----------  -->
+        <div class="row">
+          <div class="col-lg-12">
+            <button class="open-btn" onclick="toggleListBox()"><i class="fa fa-cogs fa-spin"></i></button>
+
+            <div class="list-box" id="listBox">
+              <span class="close-btn" onclick="toggleListBox()">&times;</span>
+              <h3>Options List</h3>
+              <ul>
+                <li><a href="#"><i onclick="toggleBackground()" class="fa fa-exchange" aria-hidden="true"
+                      style="font-size: 19px; color: #999c9e;"></i></a></li>
+                <li>Option 2</li>
+                <li>Option 3</li>
+                <li>Option 4</li>
+                <li>Option 5</li>
+              </ul>
+            </div>
+            <!--<div class="sticky-box text-center">-->
+            <!--  <button class="add-note-btn" onclick="addNote()"><i class="fa fa-sticky-note"-->
+            <!--      aria-hidden="true"></i></button>-->
+            <!--</div>-->
+          </div>
+        </div>
+
+        <div class="row dash-content-box">
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="dash-box">
+              <div class="card text-white bg-light mb-3"
+                style="max-width: 100%; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+                <div class="card-header bg-light-color text-dark">
+                  <span><i class="fa fa-table" aria-hidden="true"></i> Data Table</span>
+                   <div class="table-bx-icon mt-1">
+                            <span class="download-btn excel-btn download-excel"><i class="fa fa-file-excel-o text-light" aria-hidden="true"></i></span>
+                            <span class="download-btn pdf-btn download-pdf"><i class="fa fa-file-pdf-o text-light" aria-hidden="true"></i></span>
+                            <span class="download-btn print-btn print-table"><i class="fa fa-print text-light" aria-hidden="true"></i></span>
+                    </div>
+                </div>
+                <div class="card-body text-dark card-body-img">
+                  <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 filter-box-bx">
+                      <div class="row table-filter">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-tbl-bx mt-2">
+                          <div class="select-bx mt-1">
+                            <select class="form-select" aria-label="Default select example">
+                              <option selected>Open this select menu</option>
+                              <option value="1">One</option>
+                              <option value="2">Two</option>
+                              <option value="3">Three</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-tbl-bx mt-2">
+                          <div class="select-bx mt-1">
+                            <select class="form-select" aria-label="Default select example">
+                              <option selected>Open this select menu</option>
+                              <option value="1">One</option>
+                              <option value="2">Two</option>
+                              <option value="3">Three</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-tbl-bx mt-2">
+                           <div class="date-picker-container">
+                                <div class="clc-calender">
+                                    <!--<label for="fromDate">From :</label>-->
+                                    <input type="text" class="form-control" id="fromDate" placeholder="Start Date">
+                                  
+                                </div>
+                                
+                                <div class="clc-calender">
+                                    <!--<label for="toDate">To :</label>-->
+                                    <input type="text" class="form-control" id="toDate" placeholder="End Date">
+                                 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-tbl-bx mt-2">
+                          <div class="calender-bx add-btn-calendar mt-1">
+                              <!--<button data-bs-toggle="modal" data-bs-target="#exampleModalcalendar"><i class="fa fa-calendar" aria-hidden="true"></i></button>-->
+                              <button>Apply</button>
+                          </div>
+                        </div>
+                        
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-tbl-bx mt-2" style="position: relative;">
+                            <!--<span style="position: absolute;-->
+                            <!--top: 7px;">|</span>-->
+                          <div class="add-btn mt-1 text-end">
+                            <button class="add-new" data-bs-toggle="modal" data-bs-target="#exampleModalAction"><i
+                                class="fa fa-plus" aria-hidden="true" style="font-size: 11px;"></i> Add New</button>
+
+                            <!-- Empty div to push the dropdown to the right -->
+                            <div class="table-dropdown">
+                                <!--<label class="upload-btn">-->
+                                <!--    Upload Excel File-->
+                                <!--    <input type="file" class="file-input" accept=".xls,.xlsx">-->
+                                <!--</label>-->
+                              <button class="table-dropdown-btn"><span><i class="fa fa-cloud-upload" aria-hidden="true"></i></span> Import</button>
+                              <div class="table-dropdown-content" id="tableDropdownMenu">
+                                <button onclick="toggleColumn(3)">Toggle Category</button>
+                                <button onclick="toggleColumn(4)">Toggle Price</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                    
+                  <div class="data-table table-container table-wrapper">
+                    <table id="productTable" class="employee-table display table-bordered border text-center">
+                      <thead>
+                        <tr style="background-color: #fdfdfd;">
+                          <th class="checkbox-column"><input type="checkbox" class="rowCheckbox"></th>
+                          <th>Product ID</th>
+                          <th>Product Name</th>
+                          <th>Category</th>
+                          <th>Price</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><input type="checkbox" class="rowCheckbox"></td>
+                          <td>101</td>
+                          <td>iPhone 14</td>
+                          <td>Mobile</td>
+                          <td>$799</td>
+                          <td>
+                            <div class="action-ie">
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-edit"
+                                  aria-hidden="true"></i></span>
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModalupdate"><i class="fa fa-eye"
+                                  aria-hidden="true"></i></span>
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModaldelete"><i class="fa fa-trash"
+                                  aria-hidden="true"></i></span>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><input type="checkbox" class="rowCheckbox"></td>
+                          <td>102</td>
+                          <td>Samsung Galaxy</td>
+                          <td>Mobile</td>
+                          <td>$699</td>
+                          <td>
+                            <div class="action-ie">
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-edit"
+                                  aria-hidden="true"></i></span>
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModalupdate"><i class="fa fa-eye"
+                                  aria-hidden="true"></i></span>
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModaldelete"><i class="fa fa-trash"
+                                  aria-hidden="true"></i></span>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><input type="checkbox" class="rowCheckbox"></td>
+                          <td>103</td>
+                          <td>MacBook Pro</td>
+                          <td>Laptop</td>
+                          <td>$1299</td>
+                          <td>
+                            <div class="action-ie">
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-edit"
+                                  aria-hidden="true"></i></span>
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModalupdate"><i class="fa fa-eye"
+                                  aria-hidden="true"></i></span>
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModaldelete"><i class="fa fa-trash"
+                                  aria-hidden="true"></i></span>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><input type="checkbox" class="rowCheckbox"></td>
+                          <td>104</td>
+                          <td>Dell XPS 13</td>
+                          <td>Laptop</td>
+                          <td>$999</td>
+                          <td>
+                            <div class="action-ie">
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-edit"
+                                  aria-hidden="true"></i></span>
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModalupdate"><i class="fa fa-eye"
+                                  aria-hidden="true"></i></span>
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModaldelete"><i class="fa fa-trash"
+                                  aria-hidden="true"></i></span>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><input type="checkbox" class="rowCheckbox"></td>
+                          <td>105</td>
+                          <td>iPad Air</td>
+                          <td>Tablet</td>
+                          <td>$599</td>
+                          <td>
+                            <div class="action-ie">
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-edit"
+                                  aria-hidden="true"></i></span>
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModalupdate"><i class="fa fa-eye"
+                                  aria-hidden="true"></i></span>
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModaldelete"><i class="fa fa-trash"
+                                  aria-hidden="true"></i></span>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><input type="checkbox" class="rowCheckbox"></td>
+                          <td>105</td>
+                          <td>iPad Air</td>
+                          <td>Tablet</td>
+                          <td>$599</td>
+                          <td>
+                            <div class="action-ie">
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-edit"
+                                  aria-hidden="true"></i></span>
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModalupdate"><i class="fa fa-eye"
+                                  aria-hidden="true"></i></span>
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModaldelete"><i class="fa fa-trash"
+                                  aria-hidden="true"></i></span>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><input type="checkbox" class="rowCheckbox"></td>
+                          <td>105</td>
+                          <td>iPad Air</td>
+                          <td>Tablet</td>
+                          <td>$599</td>
+                          <td>
+                            <div class="action-ie">
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-edit"
+                                  aria-hidden="true"></i></span>
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModalupdate"><i class="fa fa-eye"
+                                  aria-hidden="true"></i></span>
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModaldelete"><i class="fa fa-trash"
+                                  aria-hidden="true"></i></span>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><input type="checkbox" class="rowCheckbox"></td>
+                          <td>105</td>
+                          <td>iPad Air</td>
+                          <td>Tablet</td>
+                          <td>$599</td>
+                          <td>
+                            <div class="action-ie">
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-edit"
+                                  aria-hidden="true"></i></span>
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModalupdate"><i class="fa fa-eye"
+                                  aria-hidden="true"></i></span>
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModaldelete"><i class="fa fa-trash"
+                                  aria-hidden="true"></i></span>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><input type="checkbox" class="rowCheckbox"></td>
+                          <td>105</td>
+                          <td>iPad Air</td>
+                          <td>Tablet</td>
+                          <td>$599</td>
+                          <td>
+                            <div class="action-ie">
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-edit"
+                                  aria-hidden="true"></i></span>
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModalupdate"><i class="fa fa-eye"
+                                  aria-hidden="true"></i></span>
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModaldelete"><i class="fa fa-trash"
+                                  aria-hidden="true"></i></span>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><input type="checkbox" class="rowCheckbox"></td>
+                          <td>105</td>
+                          <td>iPad Air</td>
+                          <td>Tablet</td>
+                          <td>$599</td>
+                          <td>
+                            <div class="action-ie">
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-edit"
+                                  aria-hidden="true"></i></span>
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModalupdate"><i class="fa fa-eye"
+                                  aria-hidden="true"></i></span>
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModaldelete"><i class="fa fa-trash"
+                                  aria-hidden="true"></i></span>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><input type="checkbox" class="rowCheckbox"></td>
+                          <td>105</td>
+                          <td>iPad Air</td>
+                          <td>Tablet</td>
+                          <td>$599</td>
+                          <td>
+                            <div class="action-ie">
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-edit"
+                                  aria-hidden="true"></i></span>
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModalupdate"><i class="fa fa-eye"
+                                  aria-hidden="true"></i></span>
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModaldelete"><i class="fa fa-trash"
+                                  aria-hidden="true"></i></span>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><input type="checkbox" class="rowCheckbox"></td>
+                          <td>105</td>
+                          <td>iPad Air</td>
+                          <td>Tablet</td>
+                          <td>$599</td>
+                          <td>
+                            <div class="action-ie">
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-edit"
+                                  aria-hidden="true"></i></span>
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModalupdate"><i class="fa fa-eye"
+                                  aria-hidden="true"></i></span>
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModaldelete"><i class="fa fa-trash"
+                                  aria-hidden="true"></i></span>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><input type="checkbox" class="rowCheckbox"></td>
+                          <td>105</td>
+                          <td>iPad Air</td>
+                          <td>Tablet</td>
+                          <td>$599</td>
+                          <td>
+                            <div class="action-ie">
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-edit"
+                                  aria-hidden="true"></i></span>
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModalupdate"><i class="fa fa-eye"
+                                  aria-hidden="true"></i></span>
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModaldelete"><i class="fa fa-trash"
+                                  aria-hidden="true"></i></span>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><input type="checkbox" class="rowCheckbox"></td>
+                          <td>105</td>
+                          <td>iPad Air</td>
+                          <td>Tablet</td>
+                          <td>$599</td>
+                          <td>
+                            <div class="action-ie">
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-edit"
+                                  aria-hidden="true"></i></span>
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModalupdate"><i class="fa fa-eye"
+                                  aria-hidden="true"></i></span>
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModaldelete"><i class="fa fa-trash"
+                                  aria-hidden="true"></i></span>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><input type="checkbox" class="rowCheckbox"></td>
+                          <td>105</td>
+                          <td>iPad Air</td>
+                          <td>Tablet</td>
+                          <td>$599</td>
+                          <td>
+                            <div class="action-ie">
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-edit"
+                                  aria-hidden="true"></i></span>
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModalupdate"><i class="fa fa-eye"
+                                  aria-hidden="true"></i></span>
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModaldelete"><i class="fa fa-trash"
+                                  aria-hidden="true"></i></span>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><input type="checkbox" class="rowCheckbox"></td>
+                          <td>105</td>
+                          <td>iPad Air</td>
+                          <td>Tablet</td>
+                          <td>$599</td>
+                          <td>
+                            <div class="action-ie">
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-edit"
+                                  aria-hidden="true"></i></span>
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModalupdate"><i class="fa fa-eye"
+                                  aria-hidden="true"></i></span>
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModaldelete"><i class="fa fa-trash"
+                                  aria-hidden="true"></i></span>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><input type="checkbox" class="rowCheckbox"></td>
+                          <td>105</td>
+                          <td>iPad Air</td>
+                          <td>Tablet</td>
+                          <td>$599</td>
+                          <td>
+                            <div class="action-ie">
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-edit"
+                                  aria-hidden="true"></i></span>
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModalupdate"><i class="fa fa-eye"
+                                  aria-hidden="true"></i></span>
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModaldelete"><i class="fa fa-trash"
+                                  aria-hidden="true"></i></span>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><input type="checkbox" class="rowCheckbox"></td>
+                          <td>105</td>
+                          <td>iPad Air</td>
+                          <td>Tablet</td>
+                          <td>$599</td>
+                          <td>
+                            <div class="action-ie">
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-edit"
+                                  aria-hidden="true"></i></span>
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModalupdate"><i class="fa fa-eye"
+                                  aria-hidden="true"></i></span>
+                              <span data-bs-toggle="modal" data-bs-target="#exampleModaldelete"><i class="fa fa-trash"
+                                  aria-hidden="true"></i></span>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="table-tools">
+                        
+                        <span><span style='font-size:11px;'>&#8627;</span> <input type="checkbox" id="selectAll"> Check All</span>
+                        <p style="color:#a5a8aa;">With selected</p>
+                        <span><i class="fa fa-trash text-danger" aria-hidden="true"></i>   Delete</span>
+                        <span><i class="fa fa-file-excel-o text-success" aria-hidden="true"></i> Export</span>
+                   
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+        
+
+</div>
+<!-- ---footer----- -->
+  <footer class="bg-light text-center">© 2025 Your Company Name. All Rights Reserved.</footer>
+  <script src="https://commediait.com/masteradmin/assets/custom-js/custom.js"></script>
+  <script src="https://commediait.com/masteradmin/assets/bootstrap5/bootstrap-js/bootstrap.bundle.min.js"></script>
+  
+  <script src="https://commediait.com/masteradmin/assets/jquery/jquery.min.js"></script>
+  <script>
+  $(document).ready(function () {
+    // Toggle submenu on click
+    $('.list-group-item > a').click(function (e) {
+      e.preventDefault();
+
+      // Check if the clicked item has a submenu
+      const parent = $(this).closest('.list-group-item');
+      const submenu = parent.find('.submenu').first();
+
+      // Toggle the submenu visibility
+      if (submenu.length) {
+        submenu.slideToggle();
+        parent.toggleClass('active');
+        parent.siblings().removeClass('active').find('.submenu').slideUp();
+      }
+    });
+  });
+</script>
+
+
+ </body>
+
+
+
+
+<script>
+  //-------Using this input form----------
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const inputs = document.querySelectorAll('.form-floating input');
+
+    inputs.forEach(input => {
+      input.addEventListener('focus', function () {
+        this.nextElementSibling.classList.add('active');
+      });
+
+      input.addEventListener('blur', function () {
+        if (this.value === "") {
+          this.nextElementSibling.classList.remove('active');
+        }
+      });
+    });
+  });
+</script>
+
+
+<!-- DataTables JS -->
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $('#productTable').DataTable({
+      "paging": true,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "pageLength": 15
+    });
+  });
+</script>
+
+
+<!-- ---datepicker------ -->
+<script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
+<script>
+  $(function () {
+    $("#datepicker").datepicker();
+  });
+</script>
+
+<!--------calendar--------------->
+ <script>
+        $(function () {
+            // Initialize date pickers
+            $("#fromDate").datepicker({
+                dateFormat: 'yy-mm-dd',
+                changeMonth: true,
+                changeYear: true,
+                minDate: 0,  // No past dates
+                onClose: function (selectedDate) {
+                    $("#toDate").datepicker("option", "minDate", selectedDate); // Restrict To Date
+                }
+            });
+
+            $("#toDate").datepicker({
+                dateFormat: 'yy-mm-dd',
+                changeMonth: true,
+                changeYear: true,
+                onClose: function (selectedDate) {
+                    $("#fromDate").datepicker("option", "maxDate", selectedDate); // Restrict From Date
+                }
+            });
+        });
+    </script>
+    
+    <!--------All checked table--------------->
+    
+      <script>
+        $(document).ready(function () {
+            // Select all checkboxes
+            $("#selectAll").on("click", function () {
+                $(".rowCheckbox").prop("checked", this.checked);
+            });
+
+            // Uncheck 'Select All' if any checkbox is unchecked
+            $(".rowCheckbox").on("click", function () {
+                if (!$(".rowCheckbox:checked").length) {
+                    $("#selectAll").prop("checked", false);
+                }
+            });
+        });
+    </script>
+    
+    <!-- html2pdf.js (for PDF) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    
+    <!-- SheetJS (for Excel) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+    <script>
+        // PDF Download
+        document.querySelector('.download-pdf').addEventListener('click', function () {
+            const element = document.querySelector('.table-wrapper');
+            const options = {
+                margin: 0.5,
+                filename: 'employee_list.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+            html2pdf().from(element).set(options).save();
+        });
+
+        // Excel Download
+        document.querySelector('.download-excel').addEventListener('click', function () {
+            var table = document.querySelector(".employee-table");
+            var wb = XLSX.utils.table_to_book(table, { sheet: "Sheet1" });
+            XLSX.writeFile(wb, "employee_list.xlsx");
+        });
+
+        // Print Table
+        document.querySelector('.print-table').addEventListener('click', function () {
+            var printContent = document.querySelector(".table-wrapper").innerHTML;
+            var originalContent = document.body.innerHTML;
+
+            document.body.innerHTML = printContent;
+            window.print();
+            document.body.innerHTML = originalContent;
+        });
+    </script>
+    
+
+
+</html>

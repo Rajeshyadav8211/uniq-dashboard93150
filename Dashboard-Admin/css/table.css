@@ -1,0 +1,229 @@
+/* -----dataTable------ */
+
+div#example_info {
+    font-size: 13px;
+  }
+  
+  div#example_length {
+    font-size: 13px;
+  }
+  
+  div#example_filter {
+    font-size: 13px;
+  }
+  
+  .action-ie {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .action-ie span:nth-child(1) {
+   background-color: cadetblue;
+   padding: 1px 6px;
+   color: #ffffff;
+   border-radius: 3px;
+   cursor: pointer;
+  }
+  .action-ie span:nth-child(2) {
+    background-color: #828282;
+    padding: 1px 6px;
+    color: #ffffff;
+    border-radius: 3px;
+    cursor: pointer;
+   }
+   .action-ie span:nth-child(3) {
+    background-color: #8b0000a3;
+    padding: 1px 6px;
+    color: #ffffff;
+    border-radius: 3px;
+    cursor: pointer;
+   }
+/* ----------Using this form---------- */
+
+.form-container {
+    background: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 350px;
+}
+
+.form-floating {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.form-floating input {
+    width: 100%;
+    padding: 10px 10px 14px;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.form-floating label {
+    position: absolute;
+    top: 39%;
+    left: 10px;
+    transform: translateY(-50%);
+    font-size: 12px;
+    color: #999;
+    background: #ffffff;
+    height: 40%;
+    padding: 0px 4px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.form-floating input:focus {
+    border-color: #2f4052;
+}
+
+.form-floating label.active {
+    top: 0;
+    font-size: 12px;
+    color: #2f4052;
+}
+
+.form-btn button {
+    width: fit-content;
+    padding: 8px 16px;
+    font-size: 12px;
+    color: #fff;
+    background-color: #2f4052;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.form-btn button:hover {
+    background-color: #2c2e2f;
+}
+h5#exampleModalLabel {
+    font-size: 12px;
+    font-weight: 600;
+}
+button.btn-close {
+    font-size: 11px;
+    font-weight: 600;
+}
+.delete-box{
+    display: flex;
+    justify-content: space-between;
+}
+.delete-box span{
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+}
+.delete-box button{
+    width: fit-content;
+    padding: 3px 12px;
+    font-size: 12px;
+    color: #fff;
+    background-color: #2f4052;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+ .add-btn button{
+    width: fit-content;
+    padding: 8px 8px;
+    font-size: 12px;
+    color: #fff;
+    background-color: #2f4052;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+ }
+ div#example_wrapper {
+    margin-top: 12px;
+}
+div#productTable_info {
+    font-size: 12px;
+    font-weight: 600;
+}
+div#productTable_length {
+    font-size: 12px;
+    font-weight: 600;
+}
+div#productTable_filter {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* ----filter--on--table----- */
+.filter-box-bx{
+    padding: 23px;
+}
+.select-bx select {
+    font-size: 12px;
+    border-radius: 3px!important;
+}
+.table-filter{
+    border: 1px solid #bcbfc3;
+    padding: 6px;
+    background-color: #eeeeee;
+    border-radius: 4px;
+}
+.col-tbl-bx{
+    padding-left: 0px;
+    padding-right: 3px;
+}
+.table-bx-icon{
+    width: 13vh;
+    display: flex;
+    justify-content: space-evenly;
+    /*border: 1px solid lightgray;*/
+    /*background-color: white;*/
+    /*padding: 3px;*/
+    /*border-radius: 3px;*/
+}
+.table-bx-icon span:nth-child(1){
+    background-color: cadetblue;
+    padding: 1px 4px 1px 4px;
+    color: #ffffff;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.table-bx-icon span:nth-child(2){
+    background-color: #b45b5f;
+    padding: 1px 4px 1px 4px;
+    color: #ffffff;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.table-bx-icon span:nth-child(3){
+    background-color: #828282;
+    padding: 1px 4px 1px 4px;
+    color: #ffffff;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.table-bx-icon span{
+    cursor:pointer;
+}
+table.dataTable thead th, table.dataTable thead td {
+    padding: 10px 18px;
+    border-bottom: 1px solid #b2afaf!important;
+}
+.calender-bx {
+    position: relative;
+}
+/*.calender-bx i{*/
+/*    position: absolute;*/
+/*    top: 10px;*/
+/*    right: 10px;*/
+/*}*/
+.add-btn-calendar button{
+    margin-top: 2px;
+    width: fit-content;
+    padding: 6px 15px 5px 15px;
+    font-size: 12px;
+    color: #fff;
+    background-color: #2f4052;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}

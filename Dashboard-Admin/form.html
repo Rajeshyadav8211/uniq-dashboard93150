@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Master Admin Panel</title>
+  <link rel="stylesheet"
+    href="https://commediait.com/masteradmin/assets/admin/bootstrap5/font-awesome/font-awesome.min.css">
+  <link rel="stylesheet" href="https://commediait.com/masteradmin/assets/bootstrap5/bootstrap-css/bootstrap.min.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://commediait.com/masteradmin/assets/css/main.css">
+  <link rel="stylesheet" href="https://commediait.com/masteradmin/assets/responsive-css/responsive.css">
+
+  <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.9.0/dist/css/coreui.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/table.css?=18">
+  <link rel="stylesheet" href="css/input-form.css">
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- -------datepicker----- -->
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+  <style>
+    .formError {
+      color: red;
+      font-size: 12px;
+      margin-top: 0px;
+    }
+    input.invalid, select.invalid, textarea.invalid {
+      border-color: red;
+    }
+    input.valid, select.valid, textarea.valid {
+      border-color: green;
+    }
+  </style>
+  <!-- ------------toster---------- -->
+  <style>
+          .toastr-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .toastr {
+            background: #28a745;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            font-size: 1rem;
+            opacity: 0;
+            transform: translateX(100%);
+            animation: slideIn 0.5s forwards, fadeOut 0.5s 3s forwards;
+        }
+
+        .toastr.error {
+            background: #dc3545;
+            color: #ffffff;
+        }
+
+        .toastr.info {
+            background: #17a2b8;
+        }
+
+        .toastr.warning {
+            background: #ffc107;
+            color: #212529;
+        }
+
+        /* Slide In Animation */
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Fade Out Animation */
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+        }
+
+        .toster-bx-btn button {
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+       .toster-bx-btn button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+  <style>
+     .error {
+      color: red;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+    .sidebar-nav {
+    position: absolute;
+    /* top: 75px; */
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+  </style>
+</head>
+
+
+<body onload="onLoad()">
+  <div id="wrapper">
+    <aside class="sidebar-bg" id="sidebar-wrapper">
+      <div class="sidebar-logo logo">
+        <h2><i class="fa fa-empire" aria-hidden="true"></i> LOGO</h2>
+      </div>
+      <ul class="sidebar-nav menu">
+        <li class="active">
+          <a href="panel.html"><i class="fa fa-home"></i>Dashboards</a>
+        </li>
+        <li>
+          <a href="data-table.html"><i class="fa fa-table"></i>Data Table</a>
+        </li>
+        <li>
+          <a href="#"><i class="fa fa-calendar"></i>Calendar</a>
+        </li>
+        <li class="list-group-item dropdown sidebar-dropdown accordion-sub-icon accordion">
+          <a href="#"><i class="fa fa-suitcase"></i> Portfolio
+            <span class="accordion-sub-icon-menu"><i class="fa fa-angle-right text-light submenu-icon"></i></span>
+          </a>
+
+          <ul class="sub-sidebar-nav list-group submenu submenu-list" style="display: none;">
+            <li class="list-group-item"><a href="#" class="text-decoration-none"><i class="fa fa-superpowers"></i>
+                Web Projects</a></li>
+            <li class="list-group-item dropdown accordion-sub-icon">
+              <a href="#" class="text-decoration-none"><i class="fa fa-print"></i> Design Projects
+                <span class="accordion-sub-icon-menu"><i class="fa fa-angle-right text-light submenu-icon"></i></span>
+              </a>
+              <ul class="sub-sidebar-nav sub-sidebar-nav-menu list-group submenu" style="display: none;">
+                <li class="list-group-item"><a href="#" class="text-decoration-none"><i class="fa fa-flash"></i>
+                    Logos</a></li>
+                <li class="list-group-item"><a href="#" class="text-decoration-none"><i class="fa fa-medkit"></i> UI
+                    Kits</a></li>
+              </ul>
+            </li>
+            <li class="list-group-item"><a href="#" class="text-decoration-none"><i class="fa fa-support"></i>
+                Programming</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="#"><i class="fa fa-laptop"></i>Data Grid</a>
+        </li>
+
+
+        <li class="list-group-item dropdown accordion-sub-icon">
+          <a href="#" class="text-decoration-none"><i class="fa fa-cog"></i>Services
+            <span class="accordion-sub-icon-menu"><i class="fa fa-angle-right text-light submenu-icon"></i></span>
+          </a>
+
+          <ul class="sub-sidebar-nav list-group submenu submenu-list" style="display: none;">
+            <li class="list-group-item"><a href="#" class="text-decoration-none"><i class="fa fa-weibo"></i>Web
+                Design</a></li>
+            <li class="list-group-item"><a href="#" class="text-decoration-none"><i
+                  class="fa fa-ioxhost"></i>Hosting</a></li>
+            <li class="list-group-item dropdown accordion-sub-icon">
+              <a href="#" class="text-decoration-none"><i class="fa fa-universal-access"></i>Design
+                <span class="accordion-sub-icon-menu"><i class="fa fa-angle-right text-light submenu-icon"></i></span>
+              </a>
+
+              <ul class="sub-sidebar-nav sub-sidebar-nav-menu list-group submenu" style="display: none;">
+                <li class="list-group-item"><a href="#" class="text-decoration-none"><i
+                      class="fa fa-gratipay"></i>Graphics</a></li>
+                <li class="list-group-item"><a href="#" class="text-decoration-none"><i
+                      class="fa fa-photo"></i>Photoshop</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="#"><i class="fa fa-diamond"></i>UI Element</a>
+        </li>
+
+        <li class="list-group-item dropdown accordion-sub-icon">
+          <a href="#" class="text-decoration-none"><i class="fa fa-cog"></i>Components
+            <span class="accordion-sub-icon-menu"><i class="fa fa-angle-right text-light submenu-icon"></i></span>
+          </a>
+
+          <ul class="sub-sidebar-nav list-group submenu submenu-list" style="display: none;">
+            <li class="list-group-item"><a href="#" class="text-decoration-none"><i class="fa fa-weibo"></i>Web
+                Design</a></li>
+            <li class="list-group-item"><a href="#" class="text-decoration-none"><i
+                  class="fa fa-ioxhost"></i>Hosting</a></li>
+            <li class="list-group-item dropdown accordion-sub-icon">
+              <a href="#" class="text-decoration-none"><i class="fa fa-universal-access"></i>Design
+                <span class="accordion-sub-icon-menu"><i class="fa fa-angle-right text-light submenu-icon"></i></span>
+              </a>
+
+              <ul class="sub-sidebar-nav sub-sidebar-nav-menu list-group submenu" style="display: none;">
+                <li class="list-group-item"><a href="#" class="text-decoration-none"><i
+                      class="fa fa-gratipay"></i>Graphics</a></li>
+                <li class="list-group-item"><a href="#" class="text-decoration-none"><i
+                      class="fa fa-photo"></i>Photoshop</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+        <li class="list-group-item dropdown accordion-sub-icon">
+          <a href="#" class="text-decoration-none"><i class="fa fa-sitemap"></i>Menu Levels
+            <span class="accordion-sub-icon-menu"><i class="fa fa-angle-right text-light submenu-icon"></i></span>
+          </a>
+
+          <ul class="sub-sidebar-nav list-group submenu submenu-list" style="display: none;">
+            <li class="list-group-item"><a href="#" class="text-decoration-none"><i class="fa fa-weibo"></i>Web
+                Design</a></li>
+            <li class="list-group-item"><a href="#" class="text-decoration-none"><i
+                  class="fa fa-ioxhost"></i>Hosting</a></li>
+            <li class="list-group-item dropdown accordion-sub-icon">
+              <a href="#" class="text-decoration-none"><i class="fa fa-universal-access"></i>Design
+                <span class="accordion-sub-icon-menu"><i class="fa fa-angle-right text-light submenu-icon"></i></span>
+              </a>
+
+              <ul class="sub-sidebar-nav sub-sidebar-nav-menu list-group submenu" style="display: none;">
+                <li class="list-group-item"><a href="#" class="text-decoration-none"><i
+                      class="fa fa-gratipay"></i>Graphics</a></li>
+                <li class="list-group-item"><a href="#" class="text-decoration-none"><i
+                      class="fa fa-photo"></i>Photoshop</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="#"><i class="fa fa-edit"></i>Input Form</a>
+        </li>
+        <li>
+          <a href="#"><i class="fa fa-sitemap"></i>Menu Level</a>
+        </li>
+        <li>
+          <a href="#"><i class="fa fa-mail-forward"></i>Mail Boxes</a>
+        </li>
+        <li class="active">
+          <a href="#"><i class="fa fa-sign-out"></i>Log Out</a>
+        </li>
+        <hr>
+      </ul>
+
+    </aside>
+    <div class="header-bg" id="navbar-wrapper">
+      <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a href="#" class="navbar-brand" id="sidebar-toggle"><i class="fa fa-bars"></i></a>
+          </div>
+
+          <div class="dashboard-header">
+            <div class="search-box">
+              <input type="text" placeholder="Search...">
+              <i class="fa fa-search icon"></i>
+            </div>
+            <div class="dropdown show">
+              <a href="#" role="button" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <i class="fa fa-envelope" aria-hidden="true" style="font-size: 19px; color: #999c9e;"></i>
+                <span class="label text-light drop-label">3</span>
+              </a>
+
+              <!-- Dropdown menu aligned to the left -->
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="left: auto;
+              top: 118%;
+              right: -38%;">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </div>
+            <div class="dropdown show">
+              <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa fa-bell-o" aria-hidden="true" style="font-size: 19px; color: #999c9e;"></i>
+                <span class="label text-light drop-label">5</span>
+              </a>
+
+              <!-- Dropdown menu aligned to the left -->
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="left: auto;
+              top: 118%;
+              right: -38%;">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </div>
+            <div class="dropdown show">
+
+              <a href="#" class="image-profile" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <img src="https://commediait.com/masteradmin/assets/images/profile.jpg" alt="Profile" class="p-1"
+                  style="width: 21px; border: 2px solid #2f4052; border-color: #1d3449!important; border-radius: 15% !important;">
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="left: auto;
+              top: 118%;
+              right: -38%;">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <section id="content-wrapper">
+      <div class="container dashboard-content">
+        <!-- -----------right--side-list-box-----------  -->
+        <div class="row">
+          <div class="col-lg-12">
+            <button class="open-btn" onclick="toggleListBox()"><i class="fa fa-cogs fa-spin"></i></button>
+
+            <div class="list-box" id="listBox">
+              <span class="close-btn" onclick="toggleListBox()">&times;</span>
+              <h3>Options List</h3>
+              <ul>
+                <li><a href="#"><i onclick="toggleBackground()" class="fa fa-exchange" aria-hidden="true"
+                      style="font-size: 19px; color: #999c9e;"></i></a></li>
+                <li>Option 2</li>
+                <li>Option 3</li>
+                <li>Option 4</li>
+                <li>Option 5</li>
+              </ul>
+            </div>
+            <!--<div class="sticky-box text-center">-->
+            <!--  <button class="add-note-btn" onclick="addNote()"><i class="fa fa-sticky-note"-->
+            <!--      aria-hidden="true"></i></button>-->
+            <!--</div>-->
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-12 form-btn text-center p-4">
+                <button onclick="showToastr('success', '✅ Success! Your action was completed.')">Show Success</button>
+                <button onclick="showToastr('error', '❌ Error! Something went wrong.')">Show Error</button>
+                <button onclick="showToastr('info', 'ℹ️ Info: This is an informational message.')">Show Info</button>
+                <button onclick="showToastr('warning', '⚠️ Warning: Please check your input.')">Show Warning</button>
+            </div>
+        </div>
+        <div class="row dash-content-box">
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="dash-box">
+              <div class="card text-white bg-light mb-3"
+                style="max-width: 100%; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+                <div class="card-header bg-light-color text-dark">
+                  <span><i class="fa fa-wpforms" aria-hidden="true"></i> Single Column Input Form</span>
+                </div>
+                <div class="card-body text-dark card-body-img">
+                  <form id="registrationForm" novalidate>
+                    <div class="form-floating">
+                      <input type="text" id="name" autocomplete="off" required="">
+                      <label for="name" class="">Full Name <span class="text-danger">*</span></label>
+                      <p id="nameError" class="error"></p>
+                    </div>
+                    <div class="form-floating">
+                      <input type="email" id="email" autocomplete="off" required="" readonly 
+                      onfocus="this.removeAttribute('readonly');">
+                      <label for="email" class="">Email Address <span class="text-danger">*</span></label>
+                      <p id="emailError" class="error"></p>
+                    </div>
+                    <div class="form-floating">
+                      <input type="password" id="password" autocomplete="off" required="">
+                      <label for="password" class="">Password <span class="text-danger">*</span></label>
+                      <p id="passwordError" class="error"></p>
+                    </div>
+                    <div class="gender-box">
+                      <div class="gnrl-bx-genral">
+                        <label for="gender">Gender <span class="text-danger">*</span></label>
+                      </div>
+                      <div class="form-check form-check-inline gnrl-bx">
+                        <input class="form-check-input" type="radio" name="gender" id="inlineRadio1"
+                          value="option1">
+                        <label class="form-check-label" for="inlineRadio1">Male</label>
+                      </div>
+                      <div class="form-check form-check-inline gnrl-bx">
+                        <input class="form-check-input" type="radio" name="gender" id="inlineRadio2"
+                          value="option2">
+                        <label class="form-check-label" for="inlineRadio2">Female</label>
+                      </div>
+                    </div>
+                    <p id="genderError" class="error"></p>
+                    <div class="form-date mt-4">
+                      <label for="date" class="">Date of Birth <span class="text-danger">*</span></label>
+                      <input type="date" id="date" required="">
+                      <p id="dateError" class="error"></p>
+                    </div>
+                    <div class="form-floating mt-4">
+                      <input type="text" id="address" autocomplete="off" required="">
+                      <label for="address" class="">Address <span class="text-danger">*</span></label>
+                      <p id="addressError" class="error"></p>
+                    </div>
+                    <div class="form-date mt-4">
+                      <label for="select" class="">Country <span class="text-danger">*</span></label>
+                      <select type="select" class="form-select" id="select" required="">
+                        <option value="">Select</option>
+                        <option>India</option>
+                        <option>China</option>
+                        <option>America</option>
+                        <option>Canada</option>
+                        <option>Nepal</option>
+                      </select>
+                      <p id="countryError" class="error"></p>
+                    </div>
+                    <div class="form-floating">
+                      <input type="text" id="city" autocomplete="off" required="">
+                      <label for="city" class="">City <span class="text-danger">*</span></label>
+                      <p id="cityError" class="error"></p>
+                    </div>
+                    <div class="gender-box">
+                      <div class="gnrl-bx-genral">
+                        <label for="gender">Multi Select <span class="text-danger">*</span></label>
+                      </div>
+                      <!-- Example Code Start-->
+                      <select class="form-multi-select" id="ms1" multiple data-coreui-search="global">
+                        <option value="0">Angular</option>
+                        <option value="1">Bootstrap</option>
+                        <option value="2">React.js</option>
+                        <option value="3">Vue.js</option>
+                        <optgroup label="backend">
+                          <option value="4">Django</option>
+                          <option value="5">Laravel</option>
+                          <option value="6">Node.js</option>
+                        </optgroup>
+                      </select>
+                      <!-- Example Code End -->
+                    </div>
+                    <div class="form-floating mt-4">
+                      <input type="text" id="state" autocomplete="off" required="">
+                      <label for="state" class="">State <span class="text-danger">*</span></label>
+                      <p id="stateError" class="error"></p>
+                    </div>
+                    <div class="gender-box">
+                      <div class="gnrl-bx-genral">
+                        <label for="language">Language <span class="text-danger">*</span></label>
+                      </div>
+                      <div class="form-check form-check-inline gnrl-bx">
+                        <input class="form-check-input" type="checkbox" name="language" id="inlineCheckbox1" value="option1">
+                        <label class="form-check-label" for="inlineCheckbox1">Hindi</label>
+                      </div>
+                      <div class="form-check form-check-inline gnrl-bx">
+                        <input class="form-check-input" type="checkbox" name="language" id="inlineCheckbox2" value="option2">
+                        <label class="form-check-label" for="inlineCheckbox2">English</label>
+                      </div>
+                    </div>
+                    <p id="languageError" class="error"></p>
+                    <div class="form-floating mt-4">
+                      <input type="file" id="state" required="">
+                      <!-- <label for="state" class="">File</label> -->
+                    </div>
+                    <div class="form-floating text-areabox">
+                      <textarea type="text" id="message" autocomplete="off" required=""></textarea>
+                      <label for="message" class="">Message <span class="text-danger">*</span></label>
+                      <p id="messageError" class="error"></p>
+                    </div>
+                    <div class="form-btn text-end mt-3">
+                      <button type="submit">Submit</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+         
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="dash-box">
+              <div class="card text-white bg-light mb-3"
+                style="max-width: 100%; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+                <div class="card-header bg-light-color text-dark">
+                  <span><i class="fa fa-wpforms" aria-hidden="true"></i> Double Column Input Form</span>
+                </div>
+                <div class="card-body text-dark card-body-img-bx">
+                  <form id="formRegister">
+                    <div class="row">
+                      <div class="col-6">
+                        <div class="form-floating">
+                          <input type="text" id="inputName" autocomplete="off">
+                          <label for="inputName" class="">Full Name <span class="text-danger">*</span></label>
+                          <div id="errorName" class="formError"></div>
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="form-floating">
+                          <input type="email" id="inputEmail" autocomplete="off" readonly 
+                          onfocus="this.removeAttribute('readonly');">
+                          <label for="inputEmail" class="">Email Address <span class="text-danger">*</span></label>
+                          <div id="errorEmail" class="formError"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="form-floating">
+                          <input type="password" id="inputPassword" autocomplete="off">
+                          <label for="inputPassword" class="">Password <span class="text-danger">*</span></label>
+                          <div id="errorPassword" class="formError"></div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="gender-box">
+                        <div class="gnrl-bx-genral">
+                          <label for="gender1">Gender <span class="text-danger">*</span></label>
+                        </div>
+                        <div class="form-check form-check-inline gnrl-bx">
+                          <input class="form-check-input" type="radio" name="userGender" id="inlineRadio1"
+                            value="option1">
+                          <label class="form-check-label" for="gender1 inlineRadio1">Male</label>
+                        </div>
+                        <div class="form-check form-check-inline gnrl-bx">
+                          <input class="form-check-input" type="radio" name="userGender" id="inlineRadio2"
+                            value="option2">
+                          <label class="form-check-label" for="gender1 inlineRadio2">Female</label>
+                        </div>
+                        <div id="errorGender" class="formError"></div>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-date">
+                        <label for="inputDate" class="">Date <span class="text-danger">*</span></label>
+                        <input type="date" id="inputDate">
+                        <div id="errorDate" class="formError"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="form-floating">
+                        <input type="text" id="inputAddress" autocomplete="off">
+                        <label for="inputAddress" class="">Address <span class="text-danger">*</span></label>
+                        <div id="errorAddress" class="formError"></div>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-date">
+                        <label for="selectCountry">Country <span class="text-danger">*</span></label>
+                        <select type="select" id="selectCountry" class="form-select">
+                          <option value="">Select Country</option>
+                          <option value="USA">USA</option>
+                          <option value="Canada">Canada</option>
+                          <option value="India">India</option>
+                        </select>
+                        <div id="errorCountry" class="formError"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="gender-box">
+                        <div class="gnrl-bx-genral">
+                          <label for="gender2">Multi Select</label>
+                        </div>
+                        <!-- Example Code Start-->
+                        <select class="form-multi-select" id="ms1" multiple data-coreui-search="global">
+                          <option value="0">Angular</option>
+                          <option value="1">Bootstrap</option>
+                          <option value="2">React.js</option>
+                          <option value="3">Vue.js</option>
+                          <optgroup label="backend">
+                            <option value="4">Django</option>
+                            <option value="5">Laravel</option>
+                            <option value="6">Node.js</option>
+                          </optgroup>
+                        </select>
+                        <!-- Example Code End -->
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mt-4">
+                    <div class="col-6">
+                      <div class="form-floating">
+                        <input type="text" id="inputCity" autocomplete="off">
+                        <label for="inputCity" class="">City <span class="text-danger">*</span></label>
+                        <div id="errorCity" class="formError"></div>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-floating">
+                        <input type="text" id="inputState" autocomplete="off">
+                        <label for="inputState" class="">State <span class="text-danger">*</span></label>
+                        <div id="errorState" class="formError"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="gender-box">
+                        <div class="gnrl-bx-genral">
+                          <label for="language">Language <span class="text-danger">*</span></label>
+                        </div>
+                        <div class="form-check form-check-inline gnrl-bx">
+                          <input class="form-check-input" type="checkbox" name="userLanguage" id="inlineCheckbox1" value="option1">
+                          <label class="form-check-label" for="inlineCheckbox1">Hindi</label>
+                        </div>
+                        <div class="form-check form-check-inline gnrl-bx">
+                          <input class="form-check-input" type="checkbox" name="userLanguage" id="inlineCheckbox2" value="option2">
+                          <label class="form-check-label" for="inlineCheckbox2">English</label>
+                        </div>
+                        <div id="errorLanguage" class="formError"></div>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-floating">
+                        <input type="file" id="state">
+                        <!-- <label for="state" class="">File</label> -->
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="form-floating text-areabox">
+                        <textarea type="text" id="inputMessage" autocomplete="off"></textarea>
+                        <label for="inputMessage" class="">Message <span class="text-danger">*</span></label>
+                        <div id="errorMessage" class="formError"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="gender-box">
+                        <div class="gnrl-bx-genral">
+                          <label for="gender">Image Upload</label>
+                        </div>
+                        <!-- Upload Area -->
+                        <div id="uploadArea" class="upload-area">
+                          <!-- Header -->
+                          <div class="upload-area__header">
+                            <p class="upload-area__paragraph">
+                              File should be an image
+                              <strong class="upload-area__tooltip">
+                                Like
+                                <span class="upload-area__tooltip-data"></span> <!-- Data Will be Comes From Js -->
+                              </strong>
+                            </p>
+                          </div>
+                          <!-- End Header -->
+
+                          <!-- Drop Zoon -->
+                          <div id="dropZoon" class="upload-area__drop-zoon drop-zoon">
+                            <span class="drop-zoon__icon">
+                              <i class='bx bxs-file-image'></i>
+                            </span>
+                            <p class="drop-zoon__paragraph">Drop your file here or Click to browse</p>
+                            <span id="loadingText" class="drop-zoon__loading-text">Please Wait</span>
+                            <img src="" alt="Preview Image" id="previewImage" class="drop-zoon__preview-image"
+                              draggable="false">
+                            <input type="file" id="fileInput" class="drop-zoon__file-input" accept="image/*">
+                          </div>
+                          <!-- End Drop Zoon -->
+
+                          <!-- File Details -->
+                          <div id="fileDetails" class="upload-area__file-details file-details">
+                            <h3 class="file-details__title">Uploaded File</h3>
+
+                            <div id="uploadedFile" class="uploaded-file">
+                              <div class="uploaded-file__icon-container">
+                                <i class='bx bxs-file-blank uploaded-file__icon'></i>
+                                <span class="uploaded-file__icon-text"></span> <!-- Data Will be Comes From Js -->
+                              </div>
+
+                              <div id="uploadedFileInfo" class="uploaded-file__info">
+                                <span class="uploaded-file__name">Proejct 1</span>
+                                <span class="uploaded-file__counter">0%</span>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- End File Details -->
+                        </div>
+                        <!-- End Upload Area -->
+
+                      </div>
+                    </div>
+                  </div>                  
+                    <div class="form-btn text-end mt-5">
+                      <button type="submit" class="submitButton">Submit</button>
+                    </div>               
+                  </form>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+
+  </div>
+  <!-- ---footer----- -->
+  <footer class="bg-light text-center">© 2025 Your Company Name. All Rights Reserved.</footer>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.9.0/dist/js/coreui.bundle.min.js"></script>
+
+  <script src="custom-js/custom.js"></script>
+  <script src="https://commediait.com/masteradmin/assets/bootstrap5/bootstrap-js/bootstrap.bundle.min.js"></script>
+
+  <script src="https://commediait.com/masteradmin/assets/jquery/jquery.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      // Toggle submenu on click
+      $('.list-group-item > a').click(function (e) {
+        e.preventDefault();
+
+        // Check if the clicked item has a submenu
+        const parent = $(this).closest('.list-group-item');
+        const submenu = parent.find('.submenu').first();
+
+        // Toggle the submenu visibility
+        if (submenu.length) {
+          submenu.slideToggle();
+          parent.toggleClass('active');
+          parent.siblings().removeClass('active').find('.submenu').slideUp();
+        }
+      });
+    });
+  </script>
+ <!-- Toastr Container -->
+ <div class="toastr-container" id="toastrContainer"></div>
+
+ <script>
+     function showToastr(type, message) {
+         const toastrContainer = document.getElementById('toastrContainer');
+
+         // Create toastr element
+         const toastr = document.createElement('div');
+         toastr.classList.add('toastr', type);
+         toastr.innerHTML = message;
+
+         // Append to container
+         toastrContainer.appendChild(toastr);
+
+         // Remove toastr after animation
+         setTimeout(() => {
+             toastr.remove();
+         }, 4000);
+     }
+ </script>
+
+</body>
+<!-- --------strong--Double-form-----validation--------- -->
+<script>
+  document.getElementById('formRegister').onsubmit = function(e) {
+e.preventDefault();
+clearErrors();
+
+let valid = true;
+
+const name = document.getElementById('inputName').value.trim();
+const email = document.getElementById('inputEmail').value.trim();
+const password = document.getElementById('inputPassword').value;
+const gender = document.querySelector('input[name="userGender"]:checked');
+const language = document.querySelector('input[name="userLanguage"]:checked');
+const date = document.getElementById('inputDate').value;
+const address = document.getElementById('inputAddress').value.trim();
+const state = document.getElementById('inputState').value.trim();
+const city = document.getElementById('inputCity').value.trim();
+const country = document.getElementById('selectCountry').value;
+const message = document.getElementById('inputMessage').value.trim();
+
+// Name Validation
+if (!name) {
+  displayError('errorName', 'Full name is required');
+  valid = false;
+} else if (name.length < 3 || name.length > 20) {
+  displayError('errorName', 'Name must be between 3 and 20 characters');
+  valid = false;
+} else if (!/^[a-zA-Z\s]+$/.test(name)) {
+  displayError('errorName', 'Name must contain only letters and spaces');
+  valid = false;
+}
+
+// Email Validation
+if (!email) {
+  displayError('errorEmail', 'Email is required');
+  valid = false;
+} else if (!validateEmail(email)) {
+  displayError('errorEmail', 'Invalid email format');
+  valid = false;
+}
+
+// Password Validation
+if (!password) {
+  displayError('errorPassword', 'Password is required');
+  valid = false;
+} else if (password.length < 8) {
+  displayError('errorPassword', 'Password must be at least 8 characters');
+  valid = false;
+} else if (!/(?=.*[A-Z])/.test(password)) {
+  displayError('errorPassword', 'Password must contain at least one uppercase letter');
+  valid = false;
+} else if (!/(?=.*[0-9])/.test(password)) {
+  displayError('errorPassword', 'Password must contain at least one number');
+  valid = false;
+} else if (!/(?=.*[!@#\$%\^&\*])/.test(password)) {
+  displayError('errorPassword', 'Password must contain at least one special character');
+  valid = false;
+}
+
+// Gender Validation
+if (!gender) {
+  displayError('errorGender', 'Please select your gender');
+  valid = false;
+}
+
+// Language Validation
+if (!language) {
+  displayError('errorLanguage', 'Please select your language');
+  valid = false;
+}
+
+// Date Validation
+if (!date) {
+  displayError('errorDate', 'Date of birth is required');
+  valid = false;
+}
+
+// Address Validation
+if (!address) {
+  displayError('errorAddress', 'Address is required');
+  valid = false;
+} else if (address.length < 5) {
+  displayError('errorAddress', 'Address must be at least 5 characters');
+  valid = false;
+}
+
+// State Validation
+if (!state) {
+  displayError('errorState', 'State is required');
+  valid = false;
+}
+
+// City Validation
+if (!city) {
+  displayError('errorCity', 'City is required');
+  valid = false;
+}
+
+// Country Validation
+if (!country) {
+  displayError('errorCountry', 'Please select a country');
+  valid = false;
+}
+
+// Message Validation
+if (!message) {
+  displayError('errorMessage', 'Message is required');
+  valid = false;
+} else if (message.length < 10) {
+  displayError('errorMessage', 'Message must be at least 10 characters');
+  valid = false;
+}
+
+if (valid) {
+  alert('Form submitted successfully!');
+  document.getElementById('formRegister').reset();
+}
+};
+
+function displayError(id, message) {
+document.getElementById(id).innerText = message;
+}
+
+function clearErrors() {
+document.querySelectorAll('.formError').forEach(el => el.innerText = '');
+}
+
+function validateEmail(email) {
+const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+return re.test(email);
+}
+
+</script>
+
+<script>
+  //-------Using this input form----------
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const inputs = document.querySelectorAll('.form-floating input, .form-floating textarea');
+
+    inputs.forEach(input => {
+      input.addEventListener('focus', function () {
+        this.nextElementSibling.classList.add('active');
+      });
+
+      input.addEventListener('blur', function () {
+        if (this.value === "") {
+          this.nextElementSibling.classList.remove('active');
+        }
+      });
+    });
+  });
+</script>
+
+<!--image upload and draggble JavaScript -->
+<script>
+  // Design By
+  // - https://dribbble.com/shots/13992184-File-Uploader-Drag-Drop
+
+  // Select Upload-Area
+  const uploadArea = document.querySelector('#uploadArea')
+
+  // Select Drop-Zoon Area
+  const dropZoon = document.querySelector('#dropZoon');
+
+  // Loading Text
+  const loadingText = document.querySelector('#loadingText');
+
+  // Slect File Input 
+  const fileInput = document.querySelector('#fileInput');
+
+  // Select Preview Image
+  const previewImage = document.querySelector('#previewImage');
+
+  // File-Details Area
+  const fileDetails = document.querySelector('#fileDetails');
+
+  // Uploaded File
+  const uploadedFile = document.querySelector('#uploadedFile');
+
+  // Uploaded File Info
+  const uploadedFileInfo = document.querySelector('#uploadedFileInfo');
+
+  // Uploaded File  Name
+  const uploadedFileName = document.querySelector('.uploaded-file__name');
+
+  // Uploaded File Icon
+  const uploadedFileIconText = document.querySelector('.uploaded-file__icon-text');
+
+  // Uploaded File Counter
+  const uploadedFileCounter = document.querySelector('.uploaded-file__counter');
+
+  // ToolTip Data
+  const toolTipData = document.querySelector('.upload-area__tooltip-data');
+
+  // Images Types
+  const imagesTypes = [
+    "jpeg",
+    "png",
+    "svg",
+    "gif"
+  ];
+
+  // Append Images Types Array Inisde Tooltip Data
+  toolTipData.innerHTML = [...imagesTypes].join(', .');
+
+  // When (drop-zoon) has (dragover) Event 
+  dropZoon.addEventListener('dragover', function (event) {
+    // Prevent Default Behavior 
+    event.preventDefault();
+
+    // Add Class (drop-zoon--over) On (drop-zoon)
+    dropZoon.classList.add('drop-zoon--over');
+  });
+
+  // When (drop-zoon) has (dragleave) Event 
+  dropZoon.addEventListener('dragleave', function (event) {
+    // Remove Class (drop-zoon--over) from (drop-zoon)
+    dropZoon.classList.remove('drop-zoon--over');
+  });
+
+  // When (drop-zoon) has (drop) Event 
+  dropZoon.addEventListener('drop', function (event) {
+    // Prevent Default Behavior 
+    event.preventDefault();
+
+    // Remove Class (drop-zoon--over) from (drop-zoon)
+    dropZoon.classList.remove('drop-zoon--over');
+
+    // Select The Dropped File
+    const file = event.dataTransfer.files[0];
+
+    // Call Function uploadFile(), And Send To Her The Dropped File :)
+    uploadFile(file);
+  });
+
+  // When (drop-zoon) has (click) Event 
+  dropZoon.addEventListener('click', function (event) {
+    // Click The (fileInput)
+    fileInput.click();
+  });
+
+  // When (fileInput) has (change) Event 
+  fileInput.addEventListener('change', function (event) {
+    // Select The Chosen File
+    const file = event.target.files[0];
+
+    // Call Function uploadFile(), And Send To Her The Chosen File :)
+    uploadFile(file);
+  });
+
+  // Upload File Function
+  function uploadFile(file) {
+    // FileReader()
+    const fileReader = new FileReader();
+    // File Type 
+    const fileType = file.type;
+    // File Size 
+    const fileSize = file.size;
+
+    // If File Is Passed from the (File Validation) Function
+    if (fileValidate(fileType, fileSize)) {
+      // Add Class (drop-zoon--Uploaded) on (drop-zoon)
+      dropZoon.classList.add('drop-zoon--Uploaded');
+
+      // Show Loading-text
+      loadingText.style.display = "block";
+      // Hide Preview Image
+      previewImage.style.display = 'none';
+
+      // Remove Class (uploaded-file--open) From (uploadedFile)
+      uploadedFile.classList.remove('uploaded-file--open');
+      // Remove Class (uploaded-file__info--active) from (uploadedFileInfo)
+      uploadedFileInfo.classList.remove('uploaded-file__info--active');
+
+      // After File Reader Loaded 
+      fileReader.addEventListener('load', function () {
+        // After Half Second 
+        setTimeout(function () {
+          // Add Class (upload-area--open) On (uploadArea)
+          uploadArea.classList.add('upload-area--open');
+
+          // Hide Loading-text (please-wait) Element
+          loadingText.style.display = "none";
+          // Show Preview Image
+          previewImage.style.display = 'block';
+
+          // Add Class (file-details--open) On (fileDetails)
+          fileDetails.classList.add('file-details--open');
+          // Add Class (uploaded-file--open) On (uploadedFile)
+          uploadedFile.classList.add('uploaded-file--open');
+          // Add Class (uploaded-file__info--active) On (uploadedFileInfo)
+          uploadedFileInfo.classList.add('uploaded-file__info--active');
+        }, 500); // 0.5s
+
+        // Add The (fileReader) Result Inside (previewImage) Source
+        previewImage.setAttribute('src', fileReader.result);
+
+        // Add File Name Inside Uploaded File Name
+        uploadedFileName.innerHTML = file.name;
+
+        // Call Function progressMove();
+        progressMove();
+      });
+
+      // Read (file) As Data Url 
+      fileReader.readAsDataURL(file);
+    } else { // Else
+
+      this; // (this) Represent The fileValidate(fileType, fileSize) Function
+
+    };
+  };
+
+  // Progress Counter Increase Function
+  function progressMove() {
+    // Counter Start
+    let counter = 0;
+
+    // After 600ms 
+    setTimeout(() => {
+      // Every 100ms
+      let counterIncrease = setInterval(() => {
+        // If (counter) is equle 100 
+        if (counter === 100) {
+          // Stop (Counter Increase)
+          clearInterval(counterIncrease);
+        } else { // Else
+          // plus 10 on counter
+          counter = counter + 10;
+          // add (counter) vlaue inisde (uploadedFileCounter)
+          uploadedFileCounter.innerHTML = `${counter}%`
+        }
+      }, 100);
+    }, 600);
+  };
+
+
+  // Simple File Validate Function
+  function fileValidate(fileType, fileSize) {
+    // File Type Validation
+    let isImage = imagesTypes.filter((type) => fileType.indexOf(`image/${type}`) !== -1);
+
+    // If The Uploaded File Type Is 'jpeg'
+    if (isImage[0] === 'jpeg') {
+      // Add Inisde (uploadedFileIconText) The (jpg) Value
+      uploadedFileIconText.innerHTML = 'jpg';
+    } else { // else
+      // Add Inisde (uploadedFileIconText) The Uploaded File Type 
+      uploadedFileIconText.innerHTML = isImage[0];
+    };
+
+    // If The Uploaded File Is An Image
+    if (isImage.length !== 0) {
+      // Check, If File Size Is 2MB or Less
+      if (fileSize <= 2000000) { // 2MB :)
+        return true;
+      } else { // Else File Size
+        return alert('Please Your File Should be 2 Megabytes or Less');
+      };
+    } else { // Else File Type 
+      return alert('Please make sure to upload An Image File Type');
+    };
+  };
+
+  // :)
+</script>
+<!-- --------strong---form-----validation--------- -->
+<script>
+  document.getElementById('registrationForm').onsubmit = function(e) {
+    e.preventDefault();
+    clearErrors();
+
+    let valid = true;
+
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+    const gender = document.querySelector('input[name="gender"]:checked');
+    const language = document.querySelector('input[name="language"]:checked');
+    const date = document.getElementById('date').value;
+    const address = document.getElementById('address').value.trim();
+    const state = document.getElementById('state').value.trim();
+    const city = document.getElementById('city').value.trim();
+    const country = document.getElementById('select').value;
+    const message = document.getElementById('message').value.trim();
+    
+    // Name Validation
+    if (!name) {
+      displayError('nameError', 'Full name is required');
+      valid = false;
+    } else if (name.length < 3 || name.length > 20) {
+      displayError('nameError', 'Name must be between 3 and 20 characters');
+      valid = false;
+    } else if (!/^[a-zA-Z\s]+$/.test(name)) {
+      displayError('nameError', 'Name must contain only letters and spaces');
+      valid = false;
+    }
+
+    // Email Validation
+    if (!email) {
+      displayError('emailError', 'Email is required');
+      valid = false;
+    } else if (!validateEmail(email)) {
+      displayError('emailError', 'Invalid email format');
+      valid = false;
+    }
+
+    // Password Validation
+    if (!password) {
+      displayError('passwordError', 'Password is required');
+      valid = false;
+    } else if (password.length < 8) {
+      displayError('passwordError', 'Password must be at least 8 characters');
+      valid = false;
+    } else if (!/(?=.*[A-Z])/.test(password)) {
+      displayError('passwordError', 'Password must contain at least one uppercase letter');
+      valid = false;
+    } else if (!/(?=.*[0-9])/.test(password)) {
+      displayError('passwordError', 'Password must contain at least one number');
+      valid = false;
+    } else if (!/(?=.*[!@#\$%\^&\*])/.test(password)) {
+      displayError('passwordError', 'Password must contain at least one special character');
+      valid = false;
+    }
+
+    // Gender Validation
+    if (!gender) {
+      displayError('genderError', 'Please select your gender');
+      valid = false;
+    }
+     // Gender Validation
+     if (!language) {
+      displayError('languageError', 'Please select your language');
+      valid = false;
+    }
+
+    // Date Validation
+    if (!date) {
+      displayError('dateError', 'Date of birth is required');
+      valid = false;
+    }
+
+    // Address Validation
+    if (!address) {
+      displayError('addressError', 'Address is required');
+      valid = false;
+    } else if (address.length < 5) {
+      displayError('addressError', 'Address must be at least 5 characters');
+      valid = false;
+    }
+     // state Validation
+     if (!state) {
+      displayError('stateError', 'State is required');
+      valid = false;
+    } else if (state.length < 5) {
+      displayError('addressError', 'Address must be at least 5 characters');
+      valid = false;
+    }
+      // state Validation
+      if (!city) {
+      displayError('cityError', 'City is required');
+      valid = false;
+    } else if (state.length < 5) {
+      displayError('addressError', 'Address must be at least 5 characters');
+      valid = false;
+    }
+
+    // Country Validation
+    if (!country) {
+      displayError('countryError', 'Please select a country');
+      valid = false;
+    }
+
+    // Message Validation
+    if (!message) {
+      displayError('messageError', 'Message is required');
+      valid = false;
+    } else if (message.length < 10) {
+      displayError('messageError', 'Message must be at least 10 characters');
+      valid = false;
+    }
+
+    if (valid) {
+      alert('Form submitted successfully!');
+      document.getElementById('registrationForm').reset();
+    }
+  };
+
+  function displayError(id, message) {
+    document.getElementById(id).innerText = message;
+  }
+
+  function clearErrors() {
+    document.querySelectorAll('.error').forEach(el => el.innerText = '');
+  }
+
+  function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  }
+</script>
+
+</html>

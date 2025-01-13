@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="bootstrap5/font-awesome/font-awesome.min.css">
+  <link rel="stylesheet" href="bootstrap5/bootstrap-css/bootstrap.min.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="responsive-css/responsive.css">
+</head>
+
+<body onload="onLoad()">
+  <div id="wrapper">
+    <!-- ------Sidebar--------->
+    <aside class="sidebar-bg" id="sidebar-wrapper">
+      <div class="sidebar-logo logo">
+        <h2><i class="fa fa-empire" aria-hidden="true"></i> LOGO</h2>
+      </div>
+      <ul class="sidebar-nav menu">
+        <li class="active">
+          <a href="panel.html"><i class="fa fa-home"></i>Dashboards</a>
+        </li>
+        <li>
+          <a href="data-table.html"><i class="fa fa-table"></i>Data Table</a>
+        </li>
+        <li>
+          <a href="#"><i class="fa fa-calendar"></i>Calendar</a>
+        </li>
+        <li class="list-group-item dropdown sidebar-dropdown accordion-sub-icon accordion">
+          <a href="#"><i class="fa fa-suitcase"></i> Portfolio
+            <span class="accordion-sub-icon-menu"><i class="fa fa-angle-right text-light submenu-icon"></i></span>
+          </a>
+
+          <ul class="sub-sidebar-nav list-group submenu submenu-list" style="display: none;">
+            <li class="list-group-item"><a href="#" class="text-decoration-none"><i class="fa fa-superpowers"></i>
+                Web Projects</a></li>
+            <li class="list-group-item dropdown accordion-sub-icon">
+              <a href="#" class="text-decoration-none"><i class="fa fa-print"></i> Design Projects
+                <span class="accordion-sub-icon-menu"><i class="fa fa-angle-right text-light submenu-icon"></i></span>
+              </a>
+              <ul class="sub-sidebar-nav sub-sidebar-nav-menu list-group submenu" style="display: none;">
+                <li class="list-group-item"><a href="#" class="text-decoration-none"><i class="fa fa-flash"></i> Logos</a></li>
+                <li class="list-group-item"><a href="#" class="text-decoration-none"><i class="fa fa-medkit"></i> UI Kits</a></li>
+              </ul>
+            </li>
+            <li class="list-group-item"><a href="#" class="text-decoration-none"><i class="fa fa-support"></i>
+                Programming</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="#"><i class="fa fa-laptop"></i>Data Grid</a>
+        </li>
+
+
+        <li class="list-group-item dropdown accordion-sub-icon">
+          <a href="#" class="text-decoration-none"><i class="fa fa-cog"></i>Services
+            <span class="accordion-sub-icon-menu"><i class="fa fa-angle-right text-light submenu-icon"></i></span>
+          </a>
+
+          <ul class="sub-sidebar-nav list-group submenu submenu-list" style="display: none;">
+            <li class="list-group-item"><a href="#" class="text-decoration-none"><i class="fa fa-weibo"></i>Web Design</a></li>
+            <li class="list-group-item"><a href="#" class="text-decoration-none"><i class="fa fa-ioxhost"></i>Hosting</a></li>
+            <li class="list-group-item dropdown accordion-sub-icon">
+              <a href="#" class="text-decoration-none"><i class="fa fa-universal-access"></i>Design
+                <span class="accordion-sub-icon-menu"><i class="fa fa-angle-right text-light submenu-icon"></i></span>
+              </a>
+
+              <ul class="sub-sidebar-nav sub-sidebar-nav-menu list-group submenu" style="display: none;">
+                <li class="list-group-item"><a href="#" class="text-decoration-none"><i class="fa fa-gratipay"></i>Graphics</a></li>
+                <li class="list-group-item"><a href="#" class="text-decoration-none"><i class="fa fa-photo"></i>Photoshop</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="#"><i class="fa fa-diamond"></i>UI Element</a>
+        </li>
+
+        <li class="list-group-item dropdown accordion-sub-icon">
+          <a href="#" class="text-decoration-none"><i class="fa fa-cog"></i>Components
+            <span class="accordion-sub-icon-menu"><i class="fa fa-angle-right text-light submenu-icon"></i></span>
+          </a>
+
+          <ul class="sub-sidebar-nav list-group submenu submenu-list" style="display: none;">
+            <li class="list-group-item"><a href="#" class="text-decoration-none"><i class="fa fa-weibo"></i>Web Design</a></li>
+            <li class="list-group-item"><a href="#" class="text-decoration-none"><i class="fa fa-ioxhost"></i>Hosting</a></li>
+            <li class="list-group-item dropdown accordion-sub-icon">
+              <a href="#" class="text-decoration-none"><i class="fa fa-universal-access"></i>Design
+                <span class="accordion-sub-icon-menu"><i class="fa fa-angle-right text-light submenu-icon"></i></span>
+              </a>
+
+              <ul class="sub-sidebar-nav sub-sidebar-nav-menu list-group submenu" style="display: none;">
+                <li class="list-group-item"><a href="#" class="text-decoration-none"><i class="fa fa-gratipay"></i>Graphics</a></li>
+                <li class="list-group-item"><a href="#" class="text-decoration-none"><i class="fa fa-photo"></i>Photoshop</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+        <li class="list-group-item dropdown accordion-sub-icon">
+          <a href="#" class="text-decoration-none"><i class="fa fa-sitemap"></i>Menu Levels
+            <span class="accordion-sub-icon-menu"><i class="fa fa-angle-right text-light submenu-icon"></i></span>
+          </a>
+
+          <ul class="sub-sidebar-nav list-group submenu submenu-list" style="display: none;">
+            <li class="list-group-item"><a href="#" class="text-decoration-none"><i class="fa fa-weibo"></i>Web Design</a></li>
+            <li class="list-group-item"><a href="#" class="text-decoration-none"><i class="fa fa-ioxhost"></i>Hosting</a></li>
+            <li class="list-group-item dropdown accordion-sub-icon">
+              <a href="#" class="text-decoration-none"><i class="fa fa-universal-access"></i>Design
+                <span class="accordion-sub-icon-menu"><i class="fa fa-angle-right text-light submenu-icon"></i></span>
+              </a>
+
+              <ul class="sub-sidebar-nav sub-sidebar-nav-menu list-group submenu" style="display: none;">
+                <li class="list-group-item"><a href="#" class="text-decoration-none"><i class="fa fa-gratipay"></i>Graphics</a></li>
+                <li class="list-group-item"><a href="#" class="text-decoration-none"><i class="fa fa-photo"></i>Photoshop</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="form.html"><i class="fa fa-edit"></i>Input Form</a>
+        </li>
+        <li>
+          <a href="#"><i class="fa fa-sitemap"></i>Menu Level</a>
+        </li>
+        <li>
+          <a href="#"><i class="fa fa-mail-forward"></i>Mail Boxes</a>
+        </li>
+        <li class="active">
+          <a href="#"><i class="fa fa-sign-out"></i>Log Out</a>
+        </li>
+        <hr>
+      </ul>
+
+    </aside>
+
+    <div class="header-bg" id="navbar-wrapper">
+      <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a href="#" class="navbar-brand" id="sidebar-toggle"><i class="fa fa-bars"></i></a>
+          </div>
+
+          <div class="dashboard-header">
+            <div class="search-box">
+              <input type="text" placeholder="Search...">
+              <i class="fa fa-search icon"></i>
+            </div>
+            <div class="dropdown show">
+              <a href="#" role="button" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa fa-envelope" aria-hidden="true" style="font-size: 19px; color: #999c9e;"></i>
+                <span class="label text-light drop-label">3</span>
+              </a>
+
+              <!-- Dropdown menu aligned to the left -->
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="left: auto;
+              top: 118%;
+              right: -38%;">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </div>
+            <div class="dropdown show">
+              <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa fa-bell-o" aria-hidden="true" style="font-size: 19px; color: #999c9e;"></i>
+                <span class="label text-light drop-label">5</span>
+              </a>
+
+              <!-- Dropdown menu aligned to the left -->
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="left: auto;
+              top: 118%;
+              right: -38%;">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </div>
+            <div class="dropdown show">
+              <a href="#" class="image-profile" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="images/profile.jpg" alt="Profile" class="p-1" style="width: 21px; border: 2px solid #2f4052; border-color: #1d3449!important; border-radius: 15% !important;">
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="left: auto;
+              top: 118%;
+              right: -38%;">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </nav>
+    </div>
+    <!-- -----------cantent-----start-------- -->
+    <section id="content-wrapper">
+      <div class="container dashboard-content mt-4">
+        <!-- -----------right--side-list-box-----------  -->
+        <div class="row">
+          <div class="col-lg-12">
+            <button class="open-btn" onclick="toggleListBox()"><i class="fa fa-cogs fa-spin"></i></button>
+
+            <div class="list-box" id="listBox">
+              <span class="close-btn" onclick="toggleListBox()">&times;</span>
+              <h3>Options List</h3>
+              <ul>
+                <li><a href="#"><i onclick="toggleBackground()" class="fa fa-exchange" aria-hidden="true" style="font-size: 19px; color: #999c9e;"></i></a></li>
+                <li>Option 2</li>
+                <li>Option 3</li>
+                <li>Option 4</li>
+                <li>Option 5</li>
+              </ul>
+            </div>
+            <div class="sticky-box text-center">
+              <button class="add-note-btn" onclick="addNote()"><i class="fa fa-sticky-note" aria-hidden="true"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="row dash-content-box">
+          <div class="col-lg-3 col-md-3 col-sm-3">
+            <div class="dash-box" style="border-left: 4px solid #2f4052;
+                        border-radius: 13px;">
+              <div class="card text-white bg-light mb-3" style="max-width: 21rem; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+                <div class="card-header bg-light-color text-dark">Project Overview</div>
+                <div class="card-body text-dark card-body-img">
+                  <h3 class="card-title ">Excellent</h3>
+                  <img src="images/brif.png" alt="">
+                  <p class="card-text text-end">99% <span><i class="fa fa-superpowers text-primary"></i></span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-3">
+            <div class="dash-box" style="border-left: 4px solid #d66500;
+                        border-radius: 13px;">
+              <div class="card text-white bg-light mb-3" style="max-width: 21rem; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+                <div class="card-header bg-light-color text-dark">User Management</div>
+                <div class="card-body text-dark card-body-img">
+                  <h3 class="card-title">Average</h3>
+                  <img src="images/management.png" alt="">
+                  <p class="card-text text-end">75% <span> <i class="fa fa-stack-exchange text-primary" aria-hidden="true"></i></span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-3">
+            <div class="dash-box" style="border-left: 4px solid #02ab20;
+                        border-radius: 13px;">
+              <div class="card text-white bg-light mb-3" style="max-width: 21rem; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+                <div class="card-header bg-light-color text-dark">Task Assignments</div>
+                <div class="card-body text-dark card-body-img">
+                  <h3 class="card-title">80752</h3>
+                  <img src="images/assign.png" alt="">
+                  <p class="card-text text-end">65% <span><i class="fa fa-mail-forward text-primary"></i></span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-3">
+            <div class="dash-box" style="border-left: 4px solid #7101a6;
+                        border-radius: 13px;">
+              <div class="card text-white bg-light mb-3" style="max-width: 21rem; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+                <div class="card-header bg-light-color text-dark">Reports</div>
+                <div class="card-body text-dark card-body-img">
+                  <h3 class="card-title">58900</h3>
+                  <img src="images/dashboard (1).png" alt="">
+                  <p class="card-text text-end">98% <span><i class="fa fa-empire text-primary"></i></span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="graph-box dash-box">
+              <div class="card" style="max-width: 100%; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+                <div class="card-header bg-light-color text-dark">
+                  <span><i class="fa fa-bar-chart" aria-hidden="true"></i> Orders</span>
+                  <span><i class="fa fa-times" aria-hidden="true"></i></span>
+                </div>
+                <div class="card-body box-body-bg" style="text-align: -webkit-center;">
+                  <div id="chart_div"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="graph-box dash-box">
+              <div class="card" style="max-width: 100%; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+                <div class="card-header bg-light-color text-dark">
+                  <span><i class="fa fa-bar-chart" aria-hidden="true"></i> Pie Chart</span>
+                  <span><i class="fa fa-times" aria-hidden="true"></i></span>
+                </div>
+                <div class="card-body box-body-bg" style="text-align: -webkit-center;">
+                  <div class="graph-box">
+                    <div id="piechart"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-lg-4 col-md-4 col-sm-4">
+            <div class="table-box dash-box">
+              <div class="card" style="max-width: 78.5rem; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+                <div class="card-header bg-light-color text-dark">
+                  <span>Projects by Status</span>
+                  <span><i class="fa fa-times" aria-hidden="true"></i></span>
+                </div>
+                <div class="card-body box-body-bg">
+                  <table class="table table-striped table-hover mt-1">
+                    <tbody>
+                      <tr>
+                        <td>In progress</td>
+                        <td><span style="background: #396d64;
+                                              padding: 3px; color: #fff;
+                                              border-radius: 9px;">23.61 <i class="fa fa-download" style="font-size:12px"></i></span></td>
+                        <td>96</td>
+                        <td>14.21%</td>
+                      </tr>
+                      <tr>
+                        <td>Completed</td>
+                        <td><span style="background: #396d64;
+                                              padding: 3px; color: #fff;
+                                              border-radius: 9px;">33.25 <i class="fa fa-download" style="font-size:12px"></i></span></td>
+                        <td>85</td>
+                        <td>13.02%</td>
+                      </tr>
+                      <tr>
+                        <td>Overdue</td>
+                        <td><span style="background: #ff8484;
+                                              padding: 3px; color: #fff;
+                                              border-radius: 9px;">8.54 <i class="fa fa-download" style="font-size:12px"></i></span></td>
+                        <td>70</td>
+                        <td>25.01%</td>
+                      </tr>
+                      <tr>
+                        <td>Cancelled</td>
+                        <td><span style="background: #ff8484;
+                                              padding: 3px; color: #fff;
+                                              border-radius: 9px;">3.22 <i class="fa fa-download" style="font-size:12px"></i></span></td>
+                        <td>90</td>
+                        <td>12.24%</td>
+                      </tr>
+                      <tr>
+                        <td>On Hold</td>
+                        <td><span style="background: #396d64;
+                                              padding: 3px; color: #fff;
+                                              border-radius: 9px;">33.25 <i class="fa fa-download" style="font-size:12px"></i></span></td>
+                        <td>75</td>
+                        <td>24.08%</td>
+                      </tr>
+                      <tr>
+                        <td>Planned</td>
+                        <td> <span style="background: #396d64;
+                                              padding: 3px; color: #fff;
+                                              border-radius: 9px;">0.83 <i class="fa fa-download" style="font-size:12px"></i></span></td>
+                        <td>62</td>
+                        <td>15.01%</td>
+                      </tr>
+                      <tr>
+                        <td>In progress</td>
+                        <td><span style="background: #396d64;
+                                              padding: 3px; color: #fff;
+                                              border-radius: 9px;">23.61 <i class="fa fa-download" style="font-size:12px"></i></span></td>
+                        <td>96</td>
+                        <td>14.21%</td>
+                      </tr>
+                      <tr>
+                        <td>Completed</td>
+                        <td><span style="background: #396d64;
+                                              padding: 3px; color: #fff;
+                                              border-radius: 9px;">33.25 <i class="fa fa-download" style="font-size:12px"></i></span></td>
+                        <td>85</td>
+                        <td>13.02%</td>
+                      </tr>
+                      <tr>
+                        <td>Overdue</td>
+                        <td><span style="background: #ff8484;
+                                              padding: 3px; color: #fff;
+                                              border-radius: 9px;">8.54 <i class="fa fa-download" style="font-size:12px"></i></span></td>
+                        <td>70</td>
+                        <td>25.01%</td>
+                      </tr>
+                      <tr>
+                        <td>Cancelled</td>
+                        <td><span style="background: #ff8484;
+                                              padding: 3px; color: #fff;
+                                              border-radius: 9px;">3.22 <i class="fa fa-download" style="font-size:12px"></i></span></td>
+                        <td>90</td>
+                        <td>12.24%</td>
+                      </tr>
+                      <tr>
+                        <td>On Hold</td>
+                        <td><span style="background: #396d64;
+                                              padding: 3px; color: #fff;
+                                              border-radius: 9px;">33.25 <i class="fa fa-download" style="font-size:12px"></i></span></td>
+                        <td>75</td>
+                        <td>24.08%</td>
+                      </tr>
+                      <tr>
+                        <td>Planned</td>
+                        <td> <span style="background: #396d64;
+                                              padding: 3px; color: #fff;
+                                              border-radius: 9px;">0.83 <i class="fa fa-download" style="font-size:12px"></i></span></td>
+                        <td>62</td>
+                        <td>15.01%</td>
+                      </tr>
+                      <tr>
+                        <td>In progress</td>
+                        <td><span style="background: #396d64;
+                                              padding: 3px; color: #fff;
+                                              border-radius: 9px;">23.61 <i class="fa fa-download" style="font-size:12px"></i></span></td>
+                        <td>96</td>
+                        <td>14.21%</td>
+                      </tr>
+                      <tr>
+                        <td>Completed</td>
+                        <td><span style="background: #396d64;
+                                              padding: 3px; color: #fff;
+                                              border-radius: 9px;">33.25 <i class="fa fa-download" style="font-size:12px"></i></span></td>
+                        <td>85</td>
+                        <td>13.02%</td>
+                      </tr>
+                      <tr>
+                        <td>Overdue</td>
+                        <td><span style="background: #ff8484;
+                                              padding: 3px; color: #fff;
+                                              border-radius: 9px;">8.54 <i class="fa fa-download" style="font-size:12px"></i></span></td>
+                        <td>70</td>
+                        <td>25.01%</td>
+                      </tr>
+                      <tr>
+                        <td>Cancelled</td>
+                        <td><span style="background: #ff8484;
+                                              padding: 3px; color: #fff;
+                                              border-radius: 9px;">3.22 <i class="fa fa-download" style="font-size:12px"></i></span></td>
+                        <td>90</td>
+                        <td>12.24%</td>
+                      </tr>
+                      <tr>
+                        <td>On Hold</td>
+                        <td><span style="background: #396d64;
+                                              padding: 3px; color: #fff;
+                                              border-radius: 9px;">33.25 <i class="fa fa-download" style="font-size:12px"></i></span></td>
+                        <td>75</td>
+                        <td>24.08%</td>
+                      </tr>
+                      <tr>
+                        <td>Planned</td>
+                        <td> <span style="background: #396d64;
+                                              padding: 3px; color: #fff;
+                                              border-radius: 9px;">0.83 <i class="fa fa-download" style="font-size:12px"></i></span></td>
+                        <td>62</td>
+                        <td>15.01%</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-8 col-md-8 col-sm-8 user-project-top">
+            <div class="row">
+              <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="row">
+                  <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="table-box-chart dash-box">
+                      <div class="card" style="max-width: 78.5rem; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+                        <div class="card-header bg-light-color text-dark">
+                          <span>User project list</span>
+                          <span><i class="fa fa-times" aria-hidden="true"></i></span>
+                        </div>
+                        <div class="card-body box-body-bg">
+                          <table class="table table-hover table-striped">
+                            <thead>
+                              <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Project</th>
+                                <th scope="col">Risk</th>
+                                <th scope="col">End Date</th>
+                                <th scope="col">Done</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row">1</th>
+                                <td>Software Upgrade</td>
+                                <td>On Track</td>
+                                <td>2023-09-12</td>
+                                <td>70%</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">2</th>
+                                <td>Mobile App Launch</td>
+                                <td>On Track</td>
+                                <td>2023-09-08</td>
+                                <td>75%</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">3</th>
+                                <td>Website Redesign</td>
+                                <td>At Risk</td>
+                                <td>2023-09-05</td>
+                                <td>60%</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">4</th>
+                                <td>Website Redesign</td>
+                                <td>On Track</td>
+                                <td>2023-09-05</td>
+                                <td>60%</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">5</th>
+                                <td>Website Redesign</td>
+                                <td>At Risk</td>
+                                <td>2023-09-05</td>
+                                <td>60%</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">6</th>
+                                <td>Website Redesign</td>
+                                <td>At Risk</td>
+                                <td>2023-09-05</td>
+                                <td>60%</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">7</th>
+                                <td>Software Upgrade</td>
+                                <td>On Track</td>
+                                <td>2023-09-12</td>
+                                <td>70%</td>
+                              </tr>
+
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-6 user-project-top">
+                    <div class="table-box-chart dash-box">
+                      <div class="card" style="max-width: 100%; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+                        <div class="card-header bg-light-color text-dark">
+                          <span> <i class="fa fa-calendar" aria-hidden="true"></i>
+                            Calendar</span>
+                          <span><i class="fa fa-times" aria-hidden="true"></i></span>
+                        </div>
+                        <div class="card-body box-body-bg">
+                          <div class="calendar">
+                            <div class="calendar-header">
+                              <button onclick="prevMonth()">&#8249;</button>
+                              <div id="monthYear"></div>
+                              <button onclick="nextMonth()">&#8250;</button>
+                            </div>
+                            <div class="calendar-days">
+                              <div>Sun</div>
+                              <div>Mon</div>
+                              <div>Tue</div>
+                              <div>Wed</div>
+                              <div>Thu</div>
+                              <div>Fri</div>
+                              <div>Sat</div>
+                            </div>
+                            <div class="calendar-body" id="calendarBody"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row mt-3" style="padding-right: 0px;">
+                <div class="col-lg-12 col-md-12 col-sm-12 pr-0" style="padding-right: 0px;">
+                  <div class="chart-graph dash-box">
+                    <div class="card" style="max-width: 100%; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+                      <div class="card-header bg-light-color text-dark">
+                        <span>Transactions worldwide</span>
+                        <span><i class="fa fa-times" aria-hidden="true"></i></span>
+                      </div>
+                      <div class="card-body box-body-bg">
+                        <div id="regions_div" style="width: 780px; height: 268px;"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+    <!-- -----------cantent-----end-------- -->
+  </div>
+
+  <!-- ---footer----- -->
+  <footer class="bg-light text-center">© 2024 Your Company Name. All Rights Reserved.</footer>
+  <script src="custom-js/custom.js"></script>
+  <script src="bootstrap5/bootstrap-js/bootstrap.bundle.min.js"></script>
+</body>
+
+<!-- -------accordion----dropdown--------- -->
+<!-- jQuery -->
+<script src="jquery/jquery.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+      // Toggle submenu on click
+      $('.list-group-item > a').click(function (e) {
+          e.preventDefault();
+  
+          // Check if the clicked item has a submenu
+          const parent = $(this).closest('.list-group-item');
+          const submenu = parent.find('.submenu').first();
+  
+          // Toggle the submenu visibility
+          if (submenu.length) {
+              submenu.slideToggle();
+              parent.toggleClass('active');
+              parent.siblings().removeClass('active').find('.submenu').slideUp();
+          }
+      });
+  });
+</script>
+
+<script type="text/javascript" src="google-chart/loader.js"></script>
+<script>
+  google.charts.load('current', {
+      packages: ['corechart', 'bar']
+  });
+  google.charts.setOnLoadCallback(drawBasic);
+  
+  let chart;
+  
+  function drawBasic() {
+      var data = new google.visualization.DataTable();
+      data.addColumn('timeofday', 'Time of Day');
+      data.addColumn('number', 'Motivation Level');
+  
+      data.addRows([
+          [{
+              v: [8, 0, 0],
+              f: '8 am'
+          }, 1],
+          [{
+              v: [9, 0, 0],
+              f: '9 am'
+          }, 2],
+          [{
+              v: [10, 0, 0],
+              f: '10 am'
+          }, 3],
+          [{
+              v: [11, 0, 0],
+              f: '11 am'
+          }, 4],
+          [{
+              v: [12, 0, 0],
+              f: '12 pm'
+          }, 5],
+          [{
+              v: [13, 0, 0],
+              f: '1 pm'
+          }, 6],
+          [{
+              v: [14, 0, 0],
+              f: '2 pm'
+          }, 7],
+          [{
+              v: [15, 0, 0],
+              f: '3 pm'
+          }, 8],
+          [{
+              v: [16, 0, 0],
+              f: '4 pm'
+          }, 9],
+          [{
+              v: [17, 0, 0],
+              f: '5 pm'
+          }, 10],
+      ]);
+  
+      var options = {
+          title: 'Motivation Level Throughout the Day',
+          hAxis: {
+              title: 'Time of Day',
+              format: 'h:mm a',
+              viewWindow: {
+                  min: [7, 30, 0],
+                  max: [17, 30, 0]
+              }
+          },
+          vAxis: {
+              title: 'Rating (scale of 1-10)'
+          },
+          chartArea: {
+              width: '80%',
+              height: '60%'
+          }
+      };
+  
+      chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+  }
+  
+  // Redraw chart on window resize
+  window.addEventListener('resize', drawBasic);
+</script>
+
+<!-- ------Pie--chart--------- -->
+<script type="text/javascript" src="google-chart/loader.js"></script>
+<script>
+  google.charts.load('current', {
+      'packages': ['corechart']
+  });
+  google.charts.setOnLoadCallback(drawChart);
+  
+  function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Work', 11],
+          ['Eat', 2],
+          ['Commute', 2],
+          ['Watch TV', 2],
+          ['Sleep', 7]
+      ]);
+  
+      var options = {
+          title: 'My Daily Activities',
+          legend: {
+              position: 'bottom'
+          },
+          chartArea: {
+              width: '100%',
+              height: '50%'
+          },
+      };
+  
+      var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+      chart.draw(data, options);
+  
+      // Redraw chart on window resize
+      window.addEventListener('resize', function () {
+          chart.draw(data, options);
+      });
+  }
+</script>
+
+<!-- ------world---wide chart--------- -->
+<script type="text/javascript" src="google-chart/loader.js"></script>
+<script type="text/javascript">
+  google.charts.load('current', {
+      'packages': ['geochart'],
+  });
+  google.charts.setOnLoadCallback(drawRegionsMap);
+  
+  function drawRegionsMap() {
+      var data = google.visualization.arrayToDataTable([
+          ['Country', 'Popularity'],
+          ['Germany', 200],
+          ['United States', 300],
+          ['Brazil', 400],
+          ['Canada', 500],
+          ['France', 600],
+          ['RU', 700]
+      ]);
+  
+      var options = {};
+  
+      var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+  
+      chart.draw(data, options);
+  }
+</script>
+
+</html>
